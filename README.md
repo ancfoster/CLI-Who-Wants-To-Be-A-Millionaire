@@ -1,31 +1,71 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# CLI Who Wants To Be A Millionaire
 
-Welcome USER_NAME,
+CLI Who Wants To Be A Millionaire is a Python command line trivia game based on the TV show of the same name. 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **August 17, 2021**
+## Design Process
 
-## Reminders
+### UX Design Process
 
-* Your code must be placed in the `run.py` file
-* Your dependencies must be placed in the `requirements.txt` file
-* Do not edit any of the other files or your code may not deploy properly
+### Game Design
+- Here is the flowchart that I used to plan out the logic of the game to help me when writing the game code. 
 
-## Creating the Heroku app
+## Features
+### Existing Features
+- The game features 15 questions.
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+- There are three lifelines in the game:
+	- 50:50
+	- Phone a Friend
+	- Ask the audience
 
-1. `heroku/python`
-2. `heroku/nodejs`
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+### Features Left to Implement
+- Autosave and saving game progress. If a user leaves the website in the middle of a game their progress will have been saved to local storage.
+- The time taken for a user to complete the game will also be recorded, allowing for ranking of the quickest games played. This will add another competitive elemtn to the game.
+- Global scoreboard that ranks users on how many questions they answered and how quickly.
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Technologies Used
 
-Connect your GitHub repository and deploy as normal.
+- Python
+- Google Sheets
+- Google API 
 
-## Constraints
+## Tools used
+- For writing code I used [Visual Studio Code](https://code.visualstudio.com/) which I also for Git commands and pushing to GitHub
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+- [GitHub](https://github.com]) was used for hosting the online repository, it provides an online version of Git, a source code management tool.
 
------
-Happy coding!
+- [Markdown Editor](https://apps.apple.com/ie/app/markdown-editor/id1458220908?mt=12) by Satoshi Iwaki was used for editing .MD files.
+
+
+## Testing
+
+- For all testing, please refer to the [TESTING.md](TESTING.md) file.
+
+## Deployment
+
+The site was deployed to GitHub pages. The steps to deploy are as follows:
+- In the [GitHub repository](https://github.com/ancfoster/flags-and-countries), navigate to the Settings tab
+- From the source section drop-down menu, select the Main Branch, then click "Save".
+- The page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
+- The live link can be found [here](https://ancfoster.github.io/flags-and-countries/).
+
+### Local Deployment
+
+In order to make a local copy of this project, you can clone it. In your IDE Terminal, type the following command to clone my repository:
+
+`git clone https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire`
+
+Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
+
+[![Open in GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire)
+
+## Credits
+
+### Technical documentation & tutorials
+
+
+
+
+### Acknowledgements
+I would like to thank:
