@@ -12,4 +12,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('who_wants_game')
 
-
+print("Loading data \n")
+easy = SHEET.worksheet("easy_questions").get_all_values()
+print(easy)
