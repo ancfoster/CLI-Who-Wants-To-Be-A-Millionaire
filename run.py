@@ -7,11 +7,26 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file('creds.jpipson')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('who_wants_game')
 
-print("Loading data \n")
-easy = SHEET.worksheet("easy_questions").get_all_values()
-print(easy)
+#Global variables
+question_count = 1
+question_numbers_array = []
+player_name = ''
+
+def clear_output():
+    print("\033c")
+    # Code snippet from StackOverflow user Alex Hawking https://stackoverflow.com/users/9868018/alex-hawking
+
+def main_menu():
+    print("HEllo")
+  
+
+def main():
+    """
+    Main function
+    """
+    main_menu()
