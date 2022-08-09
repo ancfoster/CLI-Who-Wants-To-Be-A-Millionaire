@@ -19,6 +19,7 @@ question_number = 1
 question_numbers_array = []
 player_name = ''
 sheet = ''
+question_row = []
 
 def clear_output(seconds):
     """
@@ -86,6 +87,7 @@ def load_level(level_number):
     There are three sheets in the worksheet file, one for easy questions, medium and hard.
     The difficulty of question picked depends on the players progress.
     """
+    global sheet
     if level_number < 6:
         sheet = 'easy_questions'
     elif level_number < 11:
@@ -109,5 +111,14 @@ def load_question():
     This number corresponds to a row in a question sheet. 
     A row contains a written question and four answers. The last answer is always the correct one.
     """
+    question_id = random.randrange(len(question_numbers_array))
+    #remove question ID from question_numbers_array
+    print(question_id)
+    question_numbers_array.remove(question_id)
+    loaded_sheet = SHEET.worksheet(sheet)
+    #Add one because first row contains column headers
+    global question_row
+    question_row = loaded_sheet.row_values(question_id + 1) 
+    print(question_row)
 
 main_menu()
