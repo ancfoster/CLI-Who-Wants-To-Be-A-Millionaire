@@ -111,14 +111,55 @@ def load_question():
     This number corresponds to a row in a question sheet. 
     A row contains a written question and four answers. The last answer is always the correct one.
     """
+    print("Loading question . . .")
     question_id = random.randrange(len(question_numbers_array))
     #remove question ID from question_numbers_array
-    print(question_id)
     question_numbers_array.remove(question_id)
     loaded_sheet = SHEET.worksheet(sheet)
     #Add one because first row contains column headers
     global question_row
-    question_row = loaded_sheet.row_values(question_id + 1) 
-    print(question_row)
+    question_row = loaded_sheet.row_values(question_id + 1)
+    clear_output(0.5)
+    ask_question()
+    
+def display_question_amount(q_number):
+        match q_number:
+            case 1:
+                return '£100'
+            case 2:
+                return '£200'
+            case 3:
+                return '£300'
+            case 4:
+                return '£500'
+            case 5:
+                return '£1,000'
+            case 6:
+                return '£2,000'
+            case 7:
+                return '£5,000'
+            case 8:
+                return '£10,000'
+            case 9:
+                return '£20,000'
+            case 10:
+                return '£50,000'
+            case 11:
+                return '£75,000'
+            case 12:
+                return '£150,000'
+            case 13:
+                return '£250,000'
+            case 14:
+                return '£500,000'
+            case 15:
+                return '£1,000,000'
+
+
+def ask_question():
+    question_money = display_question_amount(question_number)
+    print(f"Question {question_number} for {question_money}:\n")
+    print(question_row[0])
+
 
 main_menu()
