@@ -77,7 +77,9 @@ def new_game():
     clear_output(0)
     print("Loading New Game . . .")
     clear_output(1)
+    global question_number
     question_number = 1
+    global question_numbers_array
     question_numbers_array = []
     load_level(1)
 
@@ -112,7 +114,8 @@ def load_question():
     A row contains a written question and four answers. The last answer is always the correct one.
     """
     print("Loading question . . .")
-    question_id = random.randrange(len(question_numbers_array))
+    global question_numbers_array
+    question_id = random.randrange(1, len(question_numbers_array))
     #remove question ID from question_numbers_array
     question_numbers_array.remove(question_id)
     loaded_sheet = SHEET.worksheet(sheet)
@@ -160,14 +163,22 @@ def ask_question():
     print(f"Question {question_number} for {question_money}:\n")
     print(question_row[0])
     answers = assign_answers(question_row)
-    print(answers)
     correct_answer = answers[4]
-    print(f"Correct Answer is {correct_answer}")
-    print(f"A:{answers[0]}\n")
+    print(f"A: {answers[0]}\n")
     print(f"B: {answers[1]}\n")
     print(f"C: {answers[2]}\n")
     print(f"D: {answers[3]}\n")
 
+    user_answer = input("Which is the correct answer A, B, C or D? :")
+    user_answer = user_answer.capitalize()
+
+    if user_answer == correct_answer:
+        print("Correct Answer")
+        clear_output(1)
+    else:
+        print(f"Incorrect. You answered {user_answer},\nthe correct answer was {correct_answer}")
+        clear_output(2)
+        main_menu()
 
 def assign_answers(row_input):
     """
