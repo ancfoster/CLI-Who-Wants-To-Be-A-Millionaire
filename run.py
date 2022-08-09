@@ -18,6 +18,7 @@ SHEET = GSPREAD_CLIENT.open('who_wants_game')
 question_number = 1
 question_numbers_array = []
 player_name = ''
+sheet = ''
 
 def clear_output(seconds):
     """
@@ -33,6 +34,10 @@ def clear_output(seconds):
 
 
 def main_menu():
+    """
+    This function displays the main menu when called. Contains a while loop that displays the menu
+    until a valid input has been entered by the user.
+    """
     print("Welcome to CLI Who wants to be a Millionaire")
     clear_output(1.5)
 
@@ -76,13 +81,33 @@ def new_game():
     load_level(1)
 
 def load_level(level_number):
+    """
+    This function loads the 'level' variables.
+    There are three sheets in the worksheet file, one for easy questions, medium and hard.
+    The difficulty of question picked depends on the players progress.
+    """
     if level_number < 6:
-        sheet = 'easy'
+        sheet = 'easy_questions'
     elif level_number < 11:
-        sheet = 'medium'
+        sheet = 'medium_questions'
     elif level_number < 16:
-        sheet = 'hard'
-    print(sheet)
+        sheet = 'hard_questions'
+    # Loads the required sheet and counts the number of questions.
+    loaded_sheet = SHEET.worksheet(sheet)
+    column1 = loaded_sheet.col_values(1)
+    number_of_questions_in_sheet = len(column1)
+    question_array_counter = 1
+    # Creates an array of numbers based on the number of questions in the sheet.
+    while question_array_counter < number_of_questions_in_sheet:
+        question_numbers_array.append(question_array_counter)
+        question_array_counter += 1
+    load_question()
 
+def load_question():
+    """
+    This function randomly generates a number with the length of the question numbers array.
+    This number corresponds to a row in a question sheet. 
+    A row contains a written question and four answers. The last answer is always the correct one.
+    """
 
 main_menu()
