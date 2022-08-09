@@ -155,11 +155,34 @@ def display_question_amount(q_number):
             case 15:
                 return '£1,000,000'
 
-
 def ask_question():
     question_money = display_question_amount(question_number)
     print(f"Question {question_number} for {question_money}:\n")
     print(question_row[0])
+    answers = assign_answers(question_row)
+    print(answers)
+    correct_answer = answers[4]
+    print(f"Correct Answer is {correct_answer}")
+    print(f"A:{answers[0]}\n")
+    print(f"B: {answers[1]}\n")
+    print(f"C: {answers[2]}\n")
+    print(f"D: {answers[3]}\n")
 
+
+def assign_answers(row_input):
+    """
+    
+    """
+    correct_answer_position = random.randrange(1, 5)
+    if correct_answer_position == 1:
+        answers = [row_input[4], row_input[1], row_input[2], row_input[3], 'A']
+    elif correct_answer_position == 2:
+        answers = [row_input[1], row_input[4], row_input[2], row_input[3], 'B']
+    elif correct_answer_position == 3:
+        answers = [row_input[1], row_input[2], row_input[4], row_input[3], 'C']
+    elif correct_answer_position == 4:
+        answers = [row_input[1], row_input[2], row_input[3], row_input[4], 'D']
+
+    return answers
 
 main_menu()
