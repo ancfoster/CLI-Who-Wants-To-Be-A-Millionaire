@@ -15,7 +15,7 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('who_wants_game')
 
 #Global variables
-question_count = 1
+question_number = 1
 question_numbers_array = []
 player_name = ''
 
@@ -33,15 +33,56 @@ def clear_output(seconds):
 
 
 def main_menu():
-    print("""Welcome to \nWho wants to be a Millionaire""")
-    clear_output(5)
-    print("Main Menu")
-    print("Enter: 'New' to start a new game,/nor enter 'Scores' to see scores/nor 'How to Play' for game instructions")
+    print("Welcome to CLI Who wants to be a Millionaire")
+    clear_output(1.5)
 
-def main():
-    """
-    Main function
-    """
-    main_menu()
+    while True:
+        print("Main Menu\n")
+        print("Input: 'New' to start a new game\nInput 'How to' for game instructions")
 
-main()
+        main_menu_input = input("Enter input: ")
+        main_menu_input = main_menu_input.lower()
+        
+        if validate_main_menu_input(main_menu_input):
+            break
+
+    if main_menu_input == 'new':
+        new_game()
+    elif main_menu_input == 'how to':
+        print('how to')
+
+def validate_main_menu_input(input):
+    """
+    try:
+    """
+    if input == 'new':
+        return True
+    elif input == 'how to':
+        return True
+    else:
+        print(f"Ivalid input, you entered {input}")
+        return False
+
+def new_game():
+    """
+    This function prepares the program for a new game. 
+    Resets variables if player has already played during run time.
+    """
+    clear_output(0)
+    print("Loading New Game . . .")
+    clear_output(1)
+    question_number = 1
+    question_numbers_array = []
+    load_level(1)
+
+def load_level(level_number):
+    if level_number < 6:
+        sheet = 'easy'
+    elif level_number < 11:
+        sheet = 'medium'
+    elif level_number < 16:
+        sheet = 'hard'
+    print(sheet)
+
+
+main_menu()
