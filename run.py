@@ -83,18 +83,18 @@ def new_game():
     question_numbers_array = []
     load_level(1)
 
-def load_level(level_number):
+def load_level(q_number):
     """
     This function loads the 'level' variables.
     There are three sheets in the worksheet file, one for easy questions, medium and hard.
     The difficulty of question picked depends on the players progress.
     """
     global sheet
-    if level_number < 6:
+    if q_number < 6:
         sheet = 'easy_questions'
-    elif level_number < 11:
+    elif q_number < 11:
         sheet = 'medium_questions'
-    elif level_number < 16:
+    elif q_number < 16:
         sheet = 'hard_questions'
     # Loads the required sheet and counts the number of questions.
     loaded_sheet = SHEET.worksheet(sheet)
@@ -161,7 +161,7 @@ def display_question_amount(q_number):
 def ask_question():
     question_money = display_question_amount(question_number)
     print(f"Question {question_number} for {question_money}:\n")
-    print(question_row[0])
+    print(f"{question_row[0]}\n")
     answers = assign_answers(question_row)
     correct_answer = answers[4]
     print(f"A: {answers[0]}\n")
@@ -173,10 +173,11 @@ def ask_question():
     user_answer = user_answer.capitalize()
 
     if user_answer == correct_answer:
-        print("Correct Answer")
+        print(f"\nCorrect Answer")
         clear_output(1)
+        level_check()
     else:
-        print(f"Incorrect. You answered {user_answer},\nthe correct answer was {correct_answer}")
+        print(f"\nIncorrect. You answered {user_answer},\nthe correct answer was {correct_answer}")
         clear_output(2)
         main_menu()
 
@@ -193,7 +194,22 @@ def assign_answers(row_input):
         answers = [row_input[1], row_input[2], row_input[4], row_input[3], 'C']
     elif correct_answer_position == 4:
         answers = [row_input[1], row_input[2], row_input[3], row_input[4], 'D']
-
     return answers
+
+def level_check():
+    """
+    This function is called when the user answers a question correctly. 
+    This function determines whether to load a sheet with harder questions.
+    If not necessary the next question is simply loaded by calling load_question()
+    """
+    global question_number
+    question_number += 1
+    
+    if question_number == 6:
+        load_level(2)
+    elif question_number == 11:
+        load_level(3)
+    else:
+        load_question()
 
 main_menu()
