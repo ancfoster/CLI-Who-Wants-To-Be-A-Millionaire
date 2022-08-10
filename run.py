@@ -2,6 +2,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 import time
 import random
+import datetime
 
 from pip import main
 
@@ -265,7 +266,7 @@ def level_check():
         load_question()
 
 def game_complete():
-    add_to_scores(16)
+    add_to_scores(15)
     """
     This function is called by the function level_check when 
     the variable question_number is equal to 16. This means the 
@@ -354,7 +355,20 @@ def add_to_scores(score_to_save):
     This function writes the player name, game date & score (cash amount)
     to the sheet named 'scores' in the Google worksheet.
     """
+    #Init empty list
+    score_data = []
+    #Returns a string containing the cash score amount
     score_save = display_question_amount(score_to_save)
+    #Current date
+    current_date = datetime.now()
+    #Convert date into required format dd-mm-yyyy
+    save_date = current_date.strftime("%d-%m-%Y")
+    #Append the three values to list score_data
+    score_data.append(player_name)
+    score_data.append(save_date)
+    score_data.append(score_save)
+    SHEET.worksheet('scores').append_row(score_data)
+    return
 
 #This calls the main_menu function and starts the game when run.py is run.
 main_menu()
