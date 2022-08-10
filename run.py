@@ -79,22 +79,19 @@ def new_game():
     clear_output(1)
     global question_number
     question_number = 1
-    load_level(1)
+    global sheet
+    sheet = 'easy_questions'
+    load_level()
 
-def load_level(level_number):
+
+def load_level():
     """
     This function loads the 'level' variables.
     There are three sheets in the worksheet file, one for easy questions, medium and hard.
     The difficulty of question picked depends on the players progress.
-    """
-    global sheet
-    if level_number == 1:
-        sheet = 'easy_questions'
-    elif level_number == 6:
-        sheet = 'medium_questions'
-    elif level_number == 11:
-        sheet = 'hard_questions'
+    """  
     print(sheet)
+
     # Loads the required sheet and counts the number of questions in the sheet.
     global loaded_sheet
     loaded_sheet = SHEET.worksheet(sheet)
@@ -109,6 +106,7 @@ def load_level(level_number):
         question_array_counter += 1
     load_question()
 
+
 def load_question():
     """
     This function randomly generates a number with the length of the question numbers array.
@@ -120,7 +118,6 @@ def load_question():
     global question_numbers_array
     question_id = random.randrange(1, len(question_numbers_array))
     print(f"ID: {question_id} \n Array: {question_numbers_array}")
-    loaded_sheet = SHEET.worksheet(sheet)
     global question_row
     question_row = loaded_sheet.row_values(question_numbers_array[question_id])
     question_numbers_array.pop(question_id)
@@ -159,7 +156,7 @@ def display_question_amount(q_number):
         case 14:
             return '£500,000'
         case 15:
-                return '£1,000,000'
+            return '£1,000,000'
 
 def ask_question():
     print(sheet)
@@ -210,11 +207,13 @@ def level_check():
     question_number += 1
 
     print(f"Level check question number = {question_number}")
-
+    global sheet
     if question_number == 6:
-        load_level(2)
+        sheet = 'medium_questions'
+        load_level()
     elif question_number == 11:
-        load_level(3)
+        sheet = 'hard_questions'
+        load_level()
     else:
         load_question()
 
