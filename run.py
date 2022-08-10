@@ -86,8 +86,6 @@ def load_level():
     There are three sheets in the worksheet file, one for easy questions, medium and hard.
     The difficulty of question picked depends on the players progress.
     """  
-    print(sheet)
-
     # Loads the required sheet and counts the number of questions in the sheet.
     global loaded_sheet
     loaded_sheet = SHEET.worksheet(sheet)
@@ -116,8 +114,8 @@ def load_question():
     global question_row
     question_row = loaded_sheet.row_values(question_numbers_array[question_id])
     question_numbers_array.pop(question_id)
-    ask_question()
     clear_output(0.4)
+    ask_question()
     
 def display_question_amount(q_number):
     """
@@ -209,8 +207,8 @@ def level_check():
     """
     global question_number
     question_number += 1
-
-    print(f"Level check question number = {question_number}")
+    if question_number == 16:
+        game_complete()
     global sheet
     if question_number == 6:
         sheet = 'medium_questions'
@@ -220,6 +218,17 @@ def level_check():
         load_level()
     else:
         load_question()
+
+def game_won():
+    """
+    This function is called by the function level_check when 
+    the variable question_number is equal to 16. This means the 
+    player has commpleted the game and won £1,000,000
+    """
+    print(f"********************************\n*                              *\n* CONGRATULATIONS YOU HAVE WON *\n*       £1,000,000,000         *\n*                              *\n********************************\n")
+    clear_output(2)
+    main_menu()
+
 
 #This calls the main_menu function and starts the game when run.py is run.
 main_menu()
