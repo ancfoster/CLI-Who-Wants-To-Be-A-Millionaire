@@ -203,12 +203,12 @@ by entering 'walk' instead of an answer.\n''')
         add_to_scores(walk_away_with_arg)
         print(f'''Thank you for playing {player_name},
 you have walked away with {walk_away_with}.''')
-        clear_output(1)
+        clear_output(2.5)
         print('Saving your score, one moment please . . .')
         #Calls function that saves player score. The arguement is the question number of the last correctly answered question
         add_to_scores(walk_away_with_arg)
-        print('Score successfully saved/')
-        clear_output(1)
+        print('Score successfully saved.')
+        clear_output(1.5)
         main_menu()
     else:
         print(f'''\nIncorrect. You answered {user_answer},
@@ -221,8 +221,8 @@ you have walked away with {walk_away_with}.''')
         print('Saving your score, one moment please . . .')
         #Calls function that saves player score. The arguement is the question number of the last correctly answered question
         add_to_scores(milestone_amount)
-        print('Score successfully saved/')
-        clear(1)
+        print('Score successfully saved.')
+        clear_output(1)
         main_menu()
 
 def validate_answer(user_answer):
@@ -288,14 +288,16 @@ def level_check():
         load_question()
 
 def game_complete():
-    add_to_scores(15)
     """
     This function is called by the function level_check when 
     the variable question_number is equal to 16. This means the 
     player has commpleted the game and won £1,000,000
     """
     print(f"********************************\n*                              *\n* CONGRATULATIONS YOU HAVE WON *\n*       £1,000,000,000         *\n*                              *\n********************************\n")
-    clear_output(2.5)
+    print(f"\nSaving score . . .")
+    add_to_scores(15)
+    print("Score saved, thank you for playing")
+    clear_output(2)
     main_menu()
 
 def how_to():
