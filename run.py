@@ -449,7 +449,24 @@ ________________________
 ''')
     for record in score_records_all:
         print(f'''Player {record[0]} played and won {record[2]} on {record[1]}\n''')
-
+    #This section of the function returns the user to the main menu
+    while True:
+        score_nav_input = input("To return to the main menu input 'menu': ")
+        score_nav_input = score_nav_input.lower()
+        if validate_score_menu(score_nav_input):
+            break
+    clear_output(0)
+    main_menu()
+        
+def validate_score_menu(input):
+    """
+    This function validates the user input when the scores have been outputted
+    """
+    if input == 'menu':
+        return True
+    else:
+        print(f"Invlid input, you entered {input}")
+        return False
 
 #This calls the main_menu function and starts the game when run.py is run.
 main_menu()
