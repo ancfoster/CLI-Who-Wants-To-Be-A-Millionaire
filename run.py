@@ -35,7 +35,6 @@ def clear_output(seconds):
             print("\033c") # Code snippet from StackOverflow user Alex Hawking https://stackoverflow.com/users/9868018/alex-hawking
             break
 
-
 def main_menu():
     """
     This function displays the main menu when called. Contains a while loop that displays the menu
@@ -105,7 +104,6 @@ def load_level():
         question_array_counter += 1
     load_question()
 
-
 def load_question():
     """
     This function randomly generates a number with the length of the question numbers array.
@@ -163,7 +161,12 @@ def ask_question():
     """
     This function outputs the question to the terminal and how much money the question is worth.
     It also asks the user to input their answer and then checks it.
+    The function also allows users to 'walk away' if they do not know the answer.
     """
+    # This calculates the arguement for display_question_amount. It is the current question -1
+    walk_away_with_arg = question_number - 1
+    # Walk away with is the mounr of money the player can walk away with and is based on the last correctly answered question.
+    walk_away_with = display_question_amount(walk_away_with_arg)
     question_money = display_question_amount(question_number)
     print(f"Question {question_number} for {question_money}:\n")
     print(f"{question_row[0]}\n")
@@ -173,6 +176,11 @@ def ask_question():
     print(f"B: {answers[1]}\n")
     print(f"C: {answers[2]}\n")
     print(f"D: {answers[3]}\n")
+
+    #Players cannot 'walk away' with less than £1k which is why question number must be > 5
+    if question_number > 5:
+        print(f'''If you are unsure You can walk away with {walk_away_with} 
+        by entering 'walk' instead of an answer.\n''')
 
     user_answer = input("Which is the correct answer A, B, C or D? :")
     user_answer = user_answer.capitalize()
@@ -184,7 +192,7 @@ def ask_question():
     else:
         print(f"\nIncorrect. You answered {user_answer},\nthe correct answer was {correct_answer}")
         clear_output(2)
-        main_menu()
+        incorrect_answer()
 
 def assign_answers(row_input):
     """
@@ -202,6 +210,8 @@ def assign_answers(row_input):
     elif correct_answer_position == 4:
         answers = [row_input[1], row_input[2], row_input[3], row_input[4], 'D']
     return answers
+
+def incorrect_answer()
 
 def level_check():
     """
@@ -252,8 +262,7 @@ def how_to():
     that milestone will be your score. 
     \n
     Game developed by Alexander Foster.
-    \n\n
-       
+    \n\n       
     ''')
     while True:
         print('''Navigate back Main Menu by entering "menu"
@@ -301,7 +310,7 @@ def validate_player_name(name):
     """
     This function validated the length of the inputted player name.
     If the criteria have been met True is returned, if not false is returned.
-    
+
     """
     name_len = len(name)
     if name_len > 3 and name_len < 16:
