@@ -1,3 +1,5 @@
+from operator import add
+from turtle import clear
 import gspread
 from google.oauth2.service_account import Credentials
 import time
@@ -191,23 +193,37 @@ by entering 'walk' instead of an answer.\n''')
 
     if user_answer == correct_answer:
         print(f"\nCorrect Answer")
-        milestone()
+        #The milestone checks whether the correct answer means the user gets to 'bank' a milestone amount
+        milestone(question_number)
         clear_output(1)
         level_check()
+    #
     elif user_answer == 'walk':
         clear_output(0)
         add_to_scores(walk_away_with_arg)
         print(f'''Thank you for playing {player_name},
 you have walked away with {walk_away_with}.''')
-        clear_output(2)
+        clear_output(1)
+        print('Saving your score, one moment please . . .')
+        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
+        add_to_scores(walk_away_with_arg)
+        print('Score successfully saved/')
+        clear(1)
+        main_menu()
     else:
         print(f'''\nIncorrect. You answered {user_answer},
         the correct answer was {correct_answer}.
 
-        You leave with 
+        You leave with {display_question_amount(milestone_amount)}
         
         ''')
         clear_output(2)
+        print('Saving your score, one moment please . . .')
+        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
+        add_to_scores(milestone_amount)
+        print('Score successfully saved/')
+        clear(1)
+        main_menu()
 
 def validate_answer(user_answer):
     """
@@ -378,7 +394,6 @@ def add_to_scores(score_to_save):
 
 def milestone():
     global milestone_amount
-    milestone_check = question_number
     match question_number:
         case 5:
             milestone_amount = 5
