@@ -191,8 +191,15 @@ by entering 'walk' instead of an answer.\n''')
 
     if user_answer == correct_answer:
         print(f"\nCorrect Answer")
+        milestone()
         clear_output(1)
         level_check()
+    elif user_answer == 'walk':
+        clear_output(0)
+        add_to_scores(walk_away_with_arg)
+        print(f'''Thank you for playing {player_name},
+you have walked away with {walk_away_with}.''')
+        clear_output(2)
     else:
         print(f'''\nIncorrect. You answered {user_answer},
         the correct answer was {correct_answer}.
@@ -201,7 +208,6 @@ by entering 'walk' instead of an answer.\n''')
         
         ''')
         clear_output(2)
-        incorrect_answer()
 
 def validate_answer(user_answer):
     """
@@ -369,6 +375,19 @@ def add_to_scores(score_to_save):
     score_data.append(score_save)
     SHEET.worksheet('scores').append_row(score_data)
     return
+
+def milestone():
+    global milestone_amount
+    milestone_check = question_number
+    match question_number:
+        case 5:
+            milestone_amount = 5
+            return
+        case 10:
+            milestone_amount = 10
+            return
+        case _:
+            return
 
 #This calls the main_menu function and starts the game when run.py is run.
 main_menu()
