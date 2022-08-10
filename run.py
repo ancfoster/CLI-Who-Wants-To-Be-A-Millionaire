@@ -3,6 +3,8 @@ from google.oauth2.service_account import Credentials
 import time
 import random
 
+from pip import main
+
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
@@ -43,7 +45,7 @@ def main_menu():
     clear_output(1.5)
     while True:
         print("Main Menu\n")
-        print("Input: 'New' to start a new game\nInput 'How to' for game instructions")
+        print("Input: 'New' to start a new game\nInput 'How to' for game instructions\nInput 'Scores' to see scores\n")
         main_menu_input = input("Enter input: ")
         main_menu_input = main_menu_input.lower()
         if validate_main_menu_input(main_menu_input):
@@ -51,7 +53,9 @@ def main_menu():
     if main_menu_input == 'new':
         new_game()
     elif main_menu_input == 'how to':
-        print('how to')
+        how_to()
+    elif main_menu_input == 'scores':
+        scores()
 
 def validate_main_menu_input(input):
     """
@@ -60,6 +64,8 @@ def validate_main_menu_input(input):
     if input == 'new':
         return True
     elif input == 'how to':
+        return True
+    elif input == 'scores':
         return True
     else:
         print(f"Ivalid input, you entered {input}")
@@ -226,9 +232,54 @@ def game_won():
     player has commpleted the game and won £1,000,000
     """
     print(f"********************************\n*                              *\n* CONGRATULATIONS YOU HAVE WON *\n*       £1,000,000,000         *\n*                              *\n********************************\n")
-    clear_output(2)
+    clear_output(2.5)
     main_menu()
 
+def how_to():
+    clear_output(0)
+    print(f"How to play CLI Who Wants to Be A Millionaire\n")
+    print(f"_____________________________________________\n")
+    print(f'''This game is a CLI interpretation of the UK quiz\n
+    game show of the same name. 
+    \n
+    The objective is to win £1,000,000 by answer 15 multiple choice questions\n
+    correctly. These questions are from a variety of general knowledge topics.\n
+    The questions will get harder as the game progresses. \n
+    The questions are valued at progressively higher sums of money. \n
+    The questions answers are labelled A, B, C and D. To answer a question\n
+    simply input the corresponding letter into the terminal and press the enter key.\n
+    During the game there are two monetary milestones, £1,000 and £50,000.\n
+    If you answer a question incorrectly, but passed a milestone during the game\n
+    that milestone will be your score. 
+    \n
+    Game developed by Alexander Foster.
+    \n\n
+       
+    ''')
+    while True:
+        print('''Navigate back Main Menu by entering "menu"
+or start a new game by entering "new"''')
+        how_to_input = input("\nEnter input: ")
+        how_to_input = how_to_input.lower()
+        if validate_how_to_play(how_to_input):
+            break
+    clear_output(0)
+    if how_to_input == 'menu':
+        main_menu()
+    elif how_to_input == 'new':
+        new_game()
+
+def validate_how_to_play(input):
+    """
+    This function validates the users input from the main menu
+    """
+    if input == 'new':
+        return True
+    elif input == 'menu':
+        return True
+    else:
+        print(f"Ivalid input, you entered {input}")
+        return False
 
 #This calls the main_menu function and starts the game when run.py is run.
-main_menu()
+how_to()
