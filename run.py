@@ -51,7 +51,7 @@ def main_menu():
         if validate_main_menu_input(main_menu_input):
             break
     if main_menu_input == 'new':
-        new_game()
+        set_user()
     elif main_menu_input == 'how to':
         how_to()
     elif main_menu_input == 'scores':
@@ -84,7 +84,6 @@ def new_game():
     global sheet
     sheet = 'easy_questions'
     load_level()
-
 
 def load_level():
     """
@@ -265,7 +264,7 @@ or start a new game by entering "new"''')
             break
     clear_output(0)
     if how_to_input == 'menu':
-        main_menu()
+        set_user()
     elif how_to_input == 'new':
         new_game()
 
@@ -281,5 +280,34 @@ def validate_how_to_play(input):
         print(f"Ivalid input, you entered {input}")
         return False
 
+def set_user():
+    """
+    This function asks for and sets the player's name.
+    The name is validated to be between 3 and 15 characters 
+    in length.
+    """
+    clear_output(0)
+    print('''Please enter your player name,
+which must be at least 3 characters long and no more than 15.\n''')
+    while True:
+        p_name = input("Input player name: ")
+        if validate_player_name(p_name):
+            break
+    global player_name
+    player_name = p_name
+    new_game()
+
+def validate_player_name(name):
+    """
+    This function validated the length of the inputted player name.
+    If the criteria have been met True is returned, if not false is returned.
+    
+    """
+    name_len = len(name)
+    if name_len > 3 and name_len < 16:
+        return True
+    else:
+        print(f"Please enter a player name of the correct length\nyou entered: {name}\n")
+
 #This calls the main_menu function and starts the game when run.py is run.
-how_to()
+main_menu()
