@@ -49,7 +49,7 @@ def main_menu():
     while True:
         print("Main Menu\n")
         print("Input: 'New' to start a new game\nInput 'How to' for game instructions\nInput 'Scores' to see scores\n")
-        main_menu_input = input("Enter input: ")
+        main_menu_input = input("Enter input: \n")
         main_menu_input = main_menu_input.lower()
         if validate_main_menu_input(main_menu_input):
             break
@@ -191,7 +191,7 @@ def ask_question():
 by entering 'walk' instead of an answer.\n''')
     #Validates input
     while True:
-        user_answer = input("Which is the correct answer A, B, C or D?: ")
+        user_answer = input("Which is the correct answer A, B, C or D?: \n")
         user_answer = user_answer.lower()
         if validate_answer(user_answer):
             break
@@ -336,7 +336,7 @@ def how_to():
     while True:
         print('''Navigate back Main Menu by entering "menu"
 or start a new game by entering "new"''')
-        how_to_input = input("\nEnter input: ")
+        how_to_input = input("\nEnter input: \n")
         how_to_input = how_to_input.lower()
         if validate_how_to_play(how_to_input):
             break
@@ -368,7 +368,7 @@ def set_user():
     print('''Please enter your player name,
 which must be at least 3 characters long and no more than 15.\n''')
     while True:
-        p_name = input("Input player name: ")
+        p_name = input("Input player name: \n")
         if validate_player_name(p_name):
             break
     global player_name
