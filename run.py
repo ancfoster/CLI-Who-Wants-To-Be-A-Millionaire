@@ -26,6 +26,7 @@ player_name = ''
 sheet = ''
 question_row = []
 
+
 def clear_output(seconds):
     """
     This function clears the terminal contents after a certain number of seconds.
@@ -84,6 +85,8 @@ def new_game():
     global question_number
     question_number = 1
     global sheet
+    global milestone_amount
+    milestone_amount = 0
     sheet = 'easy_questions'
     load_level()
 
@@ -129,6 +132,8 @@ def display_question_amount(q_number):
     and returns the money associated with the question as a string.
     """
     match q_number:
+        case 0:
+            return '£0'
         case 1:
             return '£100'
         case 2:
@@ -203,7 +208,7 @@ by entering 'walk' instead of an answer.\n''')
         add_to_scores(walk_away_with_arg)
         print(f'''Thank you for playing {player_name},
 you have walked away with {walk_away_with}.''')
-        clear_output(2.5)
+        clear_output(3)
         print('Saving your score, one moment please . . .')
         #Calls function that saves player score. The arguement is the question number of the last correctly answered question
         add_to_scores(walk_away_with_arg)
@@ -211,16 +216,24 @@ you have walked away with {walk_away_with}.''')
         clear_output(1.5)
         main_menu()
     else:
-        print(f'''\nIncorrect. You answered {user_answer},
-        the correct answer was {correct_answer}.
+        if question_number < 6:
+            leave_with_incorrect_answer_amount = '£0'
+        else:
+            leave_with_incorrect_answer_amount = display_question_amount(milestone_amount)
 
-        You leave with {display_question_amount(milestone_amount)}
+        print(f'''\nIncorrect. You answered {user_answer.capitalize()},
+the correct answer was {correct_answer.capitalize()}.
+
+You leave with {leave_with_incorrect_answer_amount}
         
         ''')
-        clear_output(2)
+        clear_output(4)
         print('Saving your score, one moment please . . .')
         #Calls function that saves player score. The arguement is the question number of the last correctly answered question
-        add_to_scores(milestone_amount)
+        if question_number < 6:
+            add_to_scores(0)
+        else:
+            add_to_scores(milestone_amount)
         print('Score successfully saved.')
         clear_output(1)
         main_menu()
