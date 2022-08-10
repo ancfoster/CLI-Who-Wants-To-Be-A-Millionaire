@@ -5,7 +5,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 import time
 import random
-
 from pip import main
 
 SCOPE = [
@@ -13,7 +12,6 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
-
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
@@ -25,7 +23,6 @@ question_numbers_array = []
 player_name = ''
 sheet = ''
 question_row = []
-
 
 def clear_output(seconds):
     """
@@ -418,6 +415,41 @@ def milestone():
             return
         case _:
             return
+
+def scores():
+    """
+    This function retrieves the most recent scores from the sheet in the
+    Google worksheet called 'scores'
+    """
+    clear_output(0)
+    print('''Scores
+________________________
+
+Loading most recent scores . . .
+''')
+    scores_col = []
+    scores_col = SHEET.worksheet('scores').col_values(1)
+
+    number_of_scores = len(scores_col) - 1
+
+    if number_of_scores < 10:
+        score_records_to_get = number_of_scores
+    else:
+        score_records_to_get 
+    score_records_all = []
+    record_count = score_records_to_get
+    while record_count > 1:
+        score_record = SHEET.worksheet('scores').row_values(record_count)
+        score_records_all.append(score_record)
+        record_count -= 1    
+    clear_output(0)
+    print('''Scores
+________________________
+
+''')
+    for record in score_records_all:
+        print(f'''Player {record[0]} played and won {record[2]} on {record[1]}\n''')
+
 
 #This calls the main_menu function and starts the game when run.py is run.
 main_menu()
