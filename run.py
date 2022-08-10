@@ -179,20 +179,49 @@ def ask_question():
 
     #Players cannot 'walk away' with less than £1k which is why question number must be > 5
     if question_number > 5:
-        print(f'''If you are unsure You can walk away with {walk_away_with} 
-        by entering 'walk' instead of an answer.\n''')
-
-    user_answer = input("Which is the correct answer A, B, C or D? :")
-    user_answer = user_answer.capitalize()
+        print(f'''If you are unsure you may walk away with {walk_away_with} 
+by entering 'walk' instead of an answer.\n''')
+    #Validates input
+    while True:
+        user_answer = input("Which is the correct answer A, B, C or D?: ")
+        user_answer = user_answer.lower()
+        if validate_answer(user_answer):
+            break
 
     if user_answer == correct_answer:
         print(f"\nCorrect Answer")
         clear_output(1)
         level_check()
     else:
-        print(f"\nIncorrect. You answered {user_answer},\nthe correct answer was {correct_answer}")
+        print(f'''\nIncorrect. You answered {user_answer},
+        the correct answer was {correct_answer}.
+
+        You leave with 
+        
+        ''')
         clear_output(2)
         incorrect_answer()
+
+def validate_answer(user_answer):
+    """
+    This function checks the player's inputted answer. If the input is valid
+    True will be returned, if not False will be returned along with the incorrect
+    user input.
+    """
+    match user_answer:
+        case 'a':
+            return True
+        case 'b':
+            return True
+        case 'c':
+            return True
+        case 'd':
+            return True
+        case 'walk':
+            return True
+        case _:
+            print(f'Invalid input, you entered {user_answer}\n')
+            return False
 
 def assign_answers(row_input):
     """
@@ -202,16 +231,17 @@ def assign_answers(row_input):
     """
     correct_answer_position = random.randrange(1, 5)
     if correct_answer_position == 1:
-        answers = [row_input[4], row_input[1], row_input[2], row_input[3], 'A']
+        answers = [row_input[4], row_input[1], row_input[2], row_input[3], 'a']
     elif correct_answer_position == 2:
-        answers = [row_input[1], row_input[4], row_input[2], row_input[3], 'B']
+        answers = [row_input[1], row_input[4], row_input[2], row_input[3], 'b']
     elif correct_answer_position == 3:
-        answers = [row_input[1], row_input[2], row_input[4], row_input[3], 'C']
+        answers = [row_input[1], row_input[2], row_input[4], row_input[3], 'c']
     elif correct_answer_position == 4:
-        answers = [row_input[1], row_input[2], row_input[3], row_input[4], 'D']
+        answers = [row_input[1], row_input[2], row_input[3], row_input[4], 'd']
     return answers
 
-def incorrect_answer()
+def incorrect_answer():
+    print('ello')
 
 def level_check():
     """
@@ -234,7 +264,8 @@ def level_check():
     else:
         load_question()
 
-def game_won():
+def game_complete():
+    add_to_scores(16)
     """
     This function is called by the function level_check when 
     the variable question_number is equal to 16. This means the 
@@ -317,6 +348,13 @@ def validate_player_name(name):
         return True
     else:
         print(f"Please enter a player name of the correct length\nyou entered: {name}\n")
+
+def add_to_scores(score_to_save):
+    """
+    This function writes the player name, game date & score (cash amount)
+    to the sheet named 'scores' in the Google worksheet.
+    """
+    score_save = display_question_amount(score_to_save)
 
 #This calls the main_menu function and starts the game when run.py is run.
 main_menu()
