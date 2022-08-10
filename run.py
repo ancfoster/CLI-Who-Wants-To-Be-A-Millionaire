@@ -41,17 +41,13 @@ def main_menu():
     """
     print("Welcome to CLI Who wants to be a Millionaire")
     clear_output(1.5)
-
     while True:
         print("Main Menu\n")
         print("Input: 'New' to start a new game\nInput 'How to' for game instructions")
-
         main_menu_input = input("Enter input: ")
         main_menu_input = main_menu_input.lower()
-        
         if validate_main_menu_input(main_menu_input):
             break
-
     if main_menu_input == 'new':
         new_game()
     elif main_menu_input == 'how to':
@@ -59,7 +55,7 @@ def main_menu():
 
 def validate_main_menu_input(input):
     """
-    try:
+    This function validates the users input from the main menu
     """
     if input == 'new':
         return True
@@ -117,15 +113,17 @@ def load_question():
     #question ID represents the list index of each question number
     global question_numbers_array
     question_id = random.randrange(1, len(question_numbers_array))
-    print(f"ID: {question_id} \n Array: {question_numbers_array}")
     global question_row
     question_row = loaded_sheet.row_values(question_numbers_array[question_id])
     question_numbers_array.pop(question_id)
-    print(question_numbers_array)
     ask_question()
-    clear_output(2)
+    clear_output(0.4)
     
 def display_question_amount(q_number):
+    """
+    This function takes the current question number as an arguement
+    and returns the money associated with the question as a string.
+    """
     match q_number:
         case 1:
             return '£100'
@@ -159,7 +157,10 @@ def display_question_amount(q_number):
             return '£1,000,000'
 
 def ask_question():
-    print(sheet)
+    """
+    This function outputs the question to the terminal and how much money the question is worth.
+    It also asks the user to input their answer and then checks it.
+    """
     question_money = display_question_amount(question_number)
     print(f"Question {question_number} for {question_money}:\n")
     print(f"{question_row[0]}\n")
@@ -184,7 +185,9 @@ def ask_question():
 
 def assign_answers(row_input):
     """
-    
+    To make the game more interesting if it is played multiple times the position
+    of the different changes. This function determines the letetr of the correct answer
+    and then the letters of the incorrect answers.
     """
     correct_answer_position = random.randrange(1, 5)
     if correct_answer_position == 1:
@@ -202,6 +205,7 @@ def level_check():
     This function is called when the user answers a question correctly. 
     This function determines whether to load a sheet with harder questions.
     If not necessary the next question is simply loaded by calling load_question()
+    This function also increments the question number. 
     """
     global question_number
     question_number += 1
@@ -217,4 +221,5 @@ def level_check():
     else:
         load_question()
 
+#This calls the main_menu function and starts the game when run.py is run.
 main_menu()
