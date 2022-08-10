@@ -429,7 +429,7 @@ Loading most recent scores . . .
     scores_col = []
     scores_col = SHEET.worksheet('scores').col_values(1)
 
-    number_of_scores = len(scores_col) - 1
+    number_of_scores = len(scores_col)
 
     if number_of_scores < 10:
         score_records_to_get = number_of_scores
@@ -450,7 +450,7 @@ ________________________
         print(f'''Player {record[0]} played and won {record[2]} on {record[1]}\n''')
     #This section of the function returns the user to the main menu
     while True:
-        score_nav_input = input("To return to the main menu input 'menu': ")
+        score_nav_input = input("To return to the main menu input 'menu': \n")
         score_nav_input = score_nav_input.lower()
         if validate_score_menu(score_nav_input):
             break
