@@ -1,10 +1,10 @@
 from operator import add
 from turtle import clear
+from datetime import datetime
 import gspread
 from google.oauth2.service_account import Credentials
 import time
 import random
-import datetime
 
 from pip import main
 
@@ -194,7 +194,7 @@ by entering 'walk' instead of an answer.\n''')
     if user_answer == correct_answer:
         print(f"\nCorrect Answer")
         #The milestone checks whether the correct answer means the user gets to 'bank' a milestone amount
-        milestone(question_number)
+        milestone()
         clear_output(1)
         level_check()
     #
@@ -208,7 +208,7 @@ you have walked away with {walk_away_with}.''')
         #Calls function that saves player score. The arguement is the question number of the last correctly answered question
         add_to_scores(walk_away_with_arg)
         print('Score successfully saved/')
-        clear(1)
+        clear_output(1)
         main_menu()
     else:
         print(f'''\nIncorrect. You answered {user_answer},
