@@ -339,9 +339,9 @@ or start a new game by entering "new"''')
             break
     clear_output(0)
     if how_to_input == 'menu':
-        set_user()
+        main_menu()
     elif how_to_input == 'new':
-        new_game()
+        set_user()
 
 def validate_how_to_play(input):
     """
@@ -379,7 +379,7 @@ def validate_player_name(name):
 
     """
     name_len = len(name)
-    if name_len > 3 and name_len < 16:
+    if name_len > 2 and name_len < 16:
         return True
     else:
         print(f"Please enter a player name of the correct length\nyou entered: {name}\n")
@@ -435,7 +435,7 @@ Loading most recent scores . . .
     if number_of_scores < 10:
         score_records_to_get = number_of_scores
     else:
-        score_records_to_get 
+        score_records_to_get = 10
     score_records_all = []
     record_count = score_records_to_get
     while record_count > 1:
