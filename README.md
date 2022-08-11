@@ -4,7 +4,7 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 
 ## Design Process
 
-### UX Design Process
+
 
 ### Game Design
 - Here is the flowchart that I used to plan out the logic of the game to help me when writing the game code. 
@@ -41,8 +41,11 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 ## Technologies Used
 
 - Python - the game was coded in the Python programming language ans uses Python version 3
-- Google Sheets
-- Google API 
+- Google Sheets - an online spreadsheet service my Google. This is used to store the game questions and player scores.
+- Google Cloud
+	- The Google Sheets API and Google Drive API are used in Google cloud to connect the project to my Google Drive/Sheets files
+- Heroku a cloud platform-as-a-service is used to host the game in a web browser
+- NODE.js a back-end JavaScript runtime is used to create a terminal in a web browser.  
 
 ## Tools used
 - For writing code I used [Visual Studio Code](https://code.visualstudio.com/) which I also for Git commands and pushing to GitHub
@@ -89,8 +92,10 @@ Alternatively, if using Gitpod, you can click below to create your own workspace
 
 ## Credits
 
-### Technical documentation & tutorials
+- Code snippet from StackOverflow user [Alex Hawking](https://stackoverflow.com/users/9868018/alex-hawking) that is used to clear the terminal
 
+- Code snippet from StackOverflow user [Antony](https://stackoverflow.com/users/1030576/anthony) that makes use of 'time.sleep()' to [improve CPU performance](https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time) when using 'time.time()' in a loop.
+- How to use a wildcard in Python match-case from StackOverflow user [Tomerikoo](https://stackoverflow.com/users/6045800/tomerikoo)
 
 
 

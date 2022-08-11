@@ -30,7 +30,8 @@ def clear_output(seconds):
     """
     current_time = time.time()
     while True:
-        time.sleep(0.25) # sleep for 250 milliseconds
+        # Using time.sleep() greatly reduces CPU performance
+        time.sleep(0.25) # sleep for 250 milliseconds - Code snipptet from StackOverflow user Antony https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time
         if time.time() >= current_time + seconds:
             print("\033c") # Code snippet from StackOverflow user Alex Hawking https://stackoverflow.com/users/9868018/alex-hawking
             break
