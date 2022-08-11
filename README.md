@@ -9,24 +9,38 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 ### Game Design
 - Here is the flowchart that I used to plan out the logic of the game to help me when writing the game code. 
 
+ flow chart will go here
+
+- The game consists of 15 general knowledge trivia questions. These questions get harder as the player progresses through the game.
+- The questions are valued at progressively higher sums of money, up to the top prize of £1,000,000
+- The objective of the game is to try and 'win' £1,000,000.
+- For each question there are four options to choose from, labelled ‘A’, ‘B’, ‘C’ and ‘D’. 
+- Two monetary milestones are provided. In this version of the game they are £50,000 (reached after successfully answering question 10) and £1,000 (reeached after successfully answering question 5)
+- A player can 'walk away' from any question, with the last successfully answered question being the 'prize' they walk away with. 
+
+
 ## Features
 ### Existing Features
-- The game features 15 questions.
-
-- There are three lifelines in the game:
-	- 50:50
-	- Phone a Friend
-	- Ask the audience
-
+- The game features 15 multiple choice questions.
+- Input validation
+	- If a user enters an invalid input like the letter 'n' instead of the letter 'b' the game will recognise this and ask the user to enter a correct input and inform them of the incorrect input they entered. 
+	- This is defensive design and is a good UX practice. Every single input within the game will catch invalid inputs and allow the user to reinput.
+- Score system
+	- At the beginning of each game the player is asked to input their name. This is then used to populate a Google sheet with all of the different scores.
+	- Within the game the user can input 'scores' from the main menu and be presented with a list of the 10 most recent scores, who achieved those scores and on what date.
+- How to
+	- The game feature a built in guide explaining the rules and objectives of the game.
+- Connection to Google Worksheet
+	- All of the game questions are stored in a Google worksheet made up of three sheets of questions.
+	- The different sheets contain questions of different difficulty. There is an easy questions sheet, medium questions sheet, hard questions sheet.
+	- The use of sheets in this way makes it very easy for additional questions to be added to the game, or out of date questions to be removed. 
 
 ### Features Left to Implement
-- Autosave and saving game progress. If a user leaves the website in the middle of a game their progress will have been saved to local storage.
-- The time taken for a user to complete the game will also be recorded, allowing for ranking of the quickest games played. This will add another competitive elemtn to the game.
-- Global scoreboard that ranks users on how many questions they answered and how quickly.
+
 
 ## Technologies Used
 
-- Python
+- Python - the game was coded in the Python programming language ans uses Python version 3
 - Google Sheets
 - Google API 
 
