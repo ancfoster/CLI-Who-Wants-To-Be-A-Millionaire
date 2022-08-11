@@ -58,11 +58,22 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 
 ## Deployment
 
-The site was deployed to GitHub pages. The steps to deploy are as follows:
-- In the [GitHub repository](https://github.com/ancfoster/flags-and-countries), navigate to the Settings tab
-- From the source section drop-down menu, select the Main Branch, then click "Save".
-- The page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment.
-- The live link can be found [here](https://ancfoster.github.io/flags-and-countries/).
+- The game is deployed on Heroku. As it is a CLI based project, to make it runnable in the browser Code Institute provided a NODE.js based program which creates a terminal interface in the browser.
+- The deployed version of the game can be found [here](https://cli-wants-to-be-a-millionaire.herokuapp.com/)
+
+### Deployment steps
+- The project uses a number of dependencies like GSpread to run. In VSCode I entered the following command into the terminal `pip3 freeze > requirements.txt` This command creates a list of requirements that Heroku will for when building the project. requirements.txt was committed to GitHUb
+- A new project was created on Heroku. The project was created with a unique name and I selected Europe as the region.
+- After the project was created I went to the 'Settings' tab in Heroku and scrolled to Config vars.
+	- This project makes use of API keys and credentials I do not wish to be committed to GitHUb. These are stored in the file creds.json which is in the project .gitignore file.
+	- The contents of this file was pasted into the 'value' field on Heroku.
+	- The name field was given the valye 'CREDS'
+- Under settings I then added the buildpacks 'Python' and 'nodejs'
+	- For this project to run it is important the buildpack 'Python' is added in Heroku first.
+- Then I went to the deploy tab and selected GitHub as the deployment method, connecting my GitHub account.	
+	- I selected the CLI-Who-Wants-To-Be-A-Millionaire project from the dropdown in the modal and seelcted main-branch.
+	- In Heroku I then chose to use automatic deploys. This means that each time I commit changes to the main branch in the GitHub repo Heroku will rebuild the game on their service. 
+
 
 ### Local Deployment
 
@@ -73,6 +84,8 @@ In order to make a local copy of this project, you can clone it. In your IDE Ter
 Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
 
 [![Open in GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire)
+
+- The GitHub repository does not contain the CREDS.json file which is needed for the game to connect to the Google sheets.
 
 ## Credits
 
