@@ -202,7 +202,6 @@ by entering 'walk' instead of an answer.\n''')
     #
     elif user_answer == 'walk':
         clear_output(0)
-        add_to_scores(walk_away_with_arg)
         print(f'''Thank you for playing {player_name},
 you have walked away with {walk_away_with}.''')
         clear_output(3)
@@ -431,17 +430,21 @@ Loading most recent scores . . .
     scores_col = SHEET.worksheet('scores').col_values(1)
 
     number_of_scores = len(scores_col)
-
+    # If there are less than 10 records only get the records that are available 
     if number_of_scores < 10:
         score_records_to_get = number_of_scores
     else:
+    # Default action is to get and print out the 10 most recent scores
         score_records_to_get = 10
     score_records_all = []
     record_count = score_records_to_get
-    while record_count > 1:
-        score_record = SHEET.worksheet('scores').row_values(record_count)
+    while record_count > 0:
+        """ Prints scores newest to oldest by taking the number_of_scores and -1
+        with each iteration """
+        score_record = SHEET.worksheet('scores').row_values(number_of_scores)
         score_records_all.append(score_record)
-        record_count -= 1    
+        record_count -= 1
+        number_of_scores -= 1    
     clear_output(0)
     print('''Scores
 ________________________
@@ -449,7 +452,7 @@ ________________________
 ''')
     for record in score_records_all:
         print(f'''Player {record[0]} played and won {record[2]} on {record[1]}\n''')
-    #This section of the function returns the user to the main menu
+    # This section of the function returns the user to the main menu
     while True:
         score_nav_input = input("To return to the main menu input 'menu': \n")
         score_nav_input = score_nav_input.lower()
@@ -468,5 +471,5 @@ def validate_score_menu(input):
         print(f"Invlid input, you entered {input}")
         return False
 
-#This calls the main_menu function and starts the game when run.py is run.
+# This calls the main_menu function and starts the game when run.py is run.
 main_menu()
