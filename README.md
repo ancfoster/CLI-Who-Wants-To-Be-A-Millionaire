@@ -1,5 +1,7 @@
 # CLI Who Wants To Be A Millionaire
 
+![Main Screenshot](md_assets/main.png)
+
 CLI Who Wants To Be A Millionaire is a Python command line trivia game based on the TV show of the same name. 
 
 ## Design Process
@@ -22,18 +24,39 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 ## Features
 ### Existing Features
 - The game features 15 multiple choice questions.
+
+	![Multiple choice questions](md_assets/main.png)
+
 - Input validation
 	- If a user enters an invalid input like the letter 'n' instead of the letter 'b' the game will recognise this and ask the user to enter a correct input and inform them of the incorrect input they entered. 
+
 	- This is defensive design and is a good UX practice. Every single input within the game will catch invalid inputs and allow the user to reinput.
+
+		![Validation](md_assets/validation.png)
 - Score system
 	- At the beginning of each game the player is asked to input their name. This is then used to populate a Google sheet with all of the different scores.
 	- Within the game the user can input 'scores' from the main menu and be presented with a list of the 10 most recent scores, who achieved those scores and on what date.
+
+		![Score list](md_assets/scores.png)
 - How to
 	- The game feature a built in guide explaining the rules and objectives of the game.
+
+		![How To](md_assets/how_to.png)
+
 - Connection to Google Worksheet
 	- All of the game questions are stored in a Google worksheet made up of three sheets of questions.
 	- The different sheets contain questions of different difficulty. There is an easy questions sheet, medium questions sheet, hard questions sheet.
-	- The use of sheets in this way makes it very easy for additional questions to be added to the game, or out of date questions to be removed. 
+	- The use of sheets in this way makes it very easy for additional questions to be added to the game, or out of date questions to be removed.
+	- Here is a link to the [worksheet](https://docs.google.com/spreadsheets/d/1ubG6bOY5DT_VtNy0X7y1c0aIY2lo3iWI8ydAbElrlC0/edit?usp=sharing)
+
+	![Google sheet](md_assets/spreadsheet.jpg)
+
+- Randomisation
+	- To make the game more interesting when played multiple times it features two types of ranomisation:
+	- The questions are randomly taken from each question sheet
+	- The question answers are randomly assigned to the A,B,C,D letters
+
+	![Randomisation](md_assets/random.jpg)
 
 ### Features Left to Implement
 
@@ -48,7 +71,7 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 - NODE.js a back-end JavaScript runtime is used to create a terminal in a web browser.  
 
 ## Tools used
-- For writing code I used [Visual Studio Code](https://code.visualstudio.com/) which I also for Git commands and pushing to GitHub
+- For writing code I used [Visual Studio Code](https://code.visualstudio.com/) which I also used for Git commands and pushing to GitHub. I ran the game in my local terminal inside Visual Studio Code.
 
 - [GitHub](https://github.com]) was used for hosting the online repository, it provides an online version of Git, a source code management tool.
 
@@ -65,7 +88,7 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 - The deployed version of the game can be found [here](https://cli-wants-to-be-a-millionaire.herokuapp.com/)
 
 ### Deployment steps
-- The project uses a number of dependencies like GSpread to run. In VSCode I entered the following command into the terminal `pip3 freeze > requirements.txt` This command creates a list of requirements that Heroku will for when building the project. requirements.txt was committed to GitHUb
+- The project uses a number of dependencies like GSpread to run. In VSCode I entered the following command into the terminal `pip3 freeze > requirements.txt` This command creates a list of requirements that Heroku will for when building the project. requirements.txt was committed to GitHub
 - A new project was created on Heroku. The project was created with a unique name and I selected Europe as the region.
 - After the project was created I went to the 'Settings' tab in Heroku and scrolled to Config vars.
 	- This project makes use of API keys and credentials I do not wish to be committed to GitHUb. These are stored in the file creds.json which is in the project .gitignore file.
