@@ -228,6 +228,7 @@ def output_question():
     walk_away_with = display_question_amount(walk_away_with_arg)
     question_money = display_question_amount(question_number)
     answers = assign_answers(question_row)
+    global correct_answer
     correct_answer = answers[4]
     print(f'''Question {question_number} for {question_money}:
 \n{question_row[0]}
@@ -241,7 +242,6 @@ def output_question():
         print(f'''If you are unsure you may walk away with {walk_away_with} 
 by entering 'walk' instead of an answer.\n''')
  
-
 
 def validate_answer(user_answer):
     """
@@ -261,7 +261,9 @@ def validate_answer(user_answer):
         case 'walk':
             return True
         case _:
+            clear_output(0)
             print(f'Invalid input, you entered {user_answer}\n')
+            output_question()
             return False
 
 def assign_answers(row_input):
