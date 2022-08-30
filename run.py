@@ -272,9 +272,6 @@ def assign_answers(row_input):
         answers = [row_input[1], row_input[2], row_input[3], row_input[4], 'd']
     return answers
 
-def incorrect_answer():
-    print('ello')
-
 def level_check():
     """
     This function is called when the user answers a question correctly. 
@@ -378,10 +375,16 @@ def validate_player_name(name):
 
     """
     name_len = len(name)
-    if name_len > 2 and name_len < 16:
+    if name_len > 2 and name_len < 16 and name.isalpha():
         return True
     else:
-        print(f"Please enter a player name of the correct length\nyou entered: {name}\n")
+        clear_output(0)
+        print(f'''Enter a valid player name.
+This must be at least 3 but no more than 15 characters
+in length and be made up of letters only.\n
+You entered:
+{name}\n''')
+
 
 def add_to_scores(score_to_save):
     """
