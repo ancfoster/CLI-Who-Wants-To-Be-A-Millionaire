@@ -75,6 +75,7 @@ def validate_main_menu_input(input):
         print(f"Ivalid input, you entered {input}\n")
         return False
 
+
 def new_game():
     """
     This function prepares the program for a new game. 
@@ -90,6 +91,7 @@ def new_game():
     milestone_amount = 0
     sheet = 'easy_questions'
     load_level()
+
 
 def load_level():
     """
@@ -111,6 +113,7 @@ def load_level():
         question_array_counter += 1
     load_question()
 
+
 def load_question():
     """
     This function randomly generates a number with the length of the question numbers array.
@@ -127,6 +130,7 @@ def load_question():
     clear_output(0.4)
     ask_question()
     
+
 def display_question_amount(q_number):
     """
     This function takes the current question number as an arguement
@@ -165,6 +169,7 @@ def display_question_amount(q_number):
             return '£500,000'
         case 15:
             return '£1,000,000'
+
 
 def ask_question():
     """
@@ -250,7 +255,6 @@ def check_answer():
         milestone()
         clear_output(1)
         level_check()
-    #
     elif user_answer == 'walk':
         clear_output(0)
         print(f'''Thank you for playing {player_name},
@@ -281,6 +285,7 @@ You leave with {leave_with_incorrect_answer_amount}''')
         clear_output(0)
         main_menu()
 
+
 def assign_answers(row_input):
     """
     To make the game more interesting if it is played multiple times the position
@@ -297,6 +302,7 @@ def assign_answers(row_input):
     elif correct_answer_position == 4:
         answers = [row_input[1], row_input[2], row_input[3], row_input[4], 'd']
     return answers
+
 
 def level_check():
     """
@@ -319,18 +325,25 @@ def level_check():
     else:
         load_question()
 
+
 def game_complete():
     """
     This function is called by the function level_check when 
     the variable question_number is equal to 16. This means the 
     player has commpleted the game and won £1,000,000
     """
-    print(f"********************************\n*                              *\n* CONGRATULATIONS YOU HAVE WON *\n*       £1,000,000,000         *\n*                              *\n********************************\n")
+    print(f'''********************************\n
+*                              *
+* CONGRATULATIONS YOU HAVE WON *
+*        £1,000,000,000        *
+*                              *
+********************************''')
     print(f"\nSaving score . . .")
     add_to_scores(15)
-    print("Score saved, thank you for playing")
-    clear_output(2)
+    print(f"Score saved, thank you for playing\n")
+    input("Press enter to return to the main menu")
     main_menu()
+
 
 def how_to():
     clear_output(0)
@@ -365,6 +378,7 @@ or start a new game by entering "new"''')
     elif how_to_input == 'new':
         set_user()
 
+
 def validate_how_to_play(input):
     """
     This function validates the users input from the main menu
@@ -376,6 +390,7 @@ def validate_how_to_play(input):
     else:
         print(f"Ivalid input, you entered {input}")
         return False
+
 
 def set_user():
     """
@@ -393,6 +408,7 @@ which must be at least 3 characters long and no more than 15.\n''')
     global player_name
     player_name = p_name
     new_game()
+
 
 def validate_player_name(name):
     """
@@ -432,6 +448,7 @@ def add_to_scores(score_to_save):
     SHEET.worksheet('scores').append_row(score_data)
     return
 
+
 def milestone():
     global milestone_amount
     match question_number:
@@ -443,6 +460,7 @@ def milestone():
             return
         case _:
             return
+
 
 def scores():
     """
@@ -490,6 +508,7 @@ ________________________
     clear_output(0)
     main_menu()
         
+
 def validate_score_menu(input):
     """
     This function validates the user input when the scores have been outputted
