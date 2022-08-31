@@ -7,3 +7,6 @@ __pycache__/
 node_modules/
 .github/
 creds.json
+test.py
+.DS
+.DS_Store
