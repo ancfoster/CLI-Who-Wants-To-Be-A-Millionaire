@@ -278,13 +278,13 @@ def check_answer():
         clear_output(0)
         print(f'''Thank you for playing {player_name},
 you have walked away with {walk_away_with}.''')
-        clear_output(3)
-        print('Saving your score, one moment please . . .')
+        print('Saving your score . . .')
         # Calls function that saves player score. The arguement is the question
         # number of the last correctly answered question
         add_to_scores(walk_away_with_arg)
-        print('Score successfully saved.')
-        clear_output(1.5)
+        print(f'Score successfully saved.\n')
+        input("Press enter ot return to the main menu")
+        clear_output(0)
         main_menu()
     else:
         if question_number < 6:
