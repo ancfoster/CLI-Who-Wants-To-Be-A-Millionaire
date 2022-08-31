@@ -6,7 +6,6 @@ import time
 import random
 from pip import main
 
-from test import output_question
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
