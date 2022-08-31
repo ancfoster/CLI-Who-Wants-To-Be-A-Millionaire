@@ -283,7 +283,7 @@ you have walked away with {walk_away_with}.''')
         # number of the last correctly answered question
         add_to_scores(walk_away_with_arg)
         print(f'Score successfully saved.\n')
-        input("Press enter ot return to the main menu")
+        input("Press enter to return to the main menu")
         clear_output(0)
         main_menu()
     else:
@@ -353,7 +353,7 @@ def game_complete():
     the variable question_number is equal to 16. This means the
     player has commpleted the game and won £1,000,000
     """
-    print(f'''********************************\n
+    print(f'''********************************
 *                              *
 * CONGRATULATIONS YOU HAVE WON *
 *        £1,000,000,000        *
