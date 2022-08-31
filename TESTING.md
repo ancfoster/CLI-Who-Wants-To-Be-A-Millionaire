@@ -1,5 +1,5 @@
 # Testing
-CLick here to return to [README.md](README.md)
+Click here to return to [README.md](README.md)
 
 ## Changes made after user testing
 
@@ -25,8 +25,11 @@ During devleopment I sought user feedback from my mentor and another user. Based
 
 **PEP8 validator**
 
-| File | Validator Result | Screenshot |
-|---|---|---|
-|run.py|[Link](https://validator.w3.org/nu/?doc=https%3A%2F%2Fancfoster.github.io%2Fflags-and-countries%2Findex.html)|![index.html](testing_assets/index_html.png)|
+The code passes through the validator except for two lines which are too long because of long variable names.
+These lines are commented as `# noqa`
+
+| File | Screenshot |
+|---|---|
+|run.py|![Test screenshot](md_assets/pep8.jpeg)|
 
 ## User Story Testing
