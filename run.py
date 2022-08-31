@@ -39,15 +39,17 @@ def clear_output(seconds):
 
 def main_menu():
     """
-    This function displays the main menu when called. Contains a while loop that displays the menu
-    until a valid input has been entered by the user.
+    This function displays the main menu when called. Contains a while loop
+    that displays the menu until a valid input has been entered by the user.
     """
     print("Welcome to CLI Who wants to be a Millionaire")
     clear_output(1.5)
     while True:
-        print("Main Menu\n")
-        print("Input: 'New' to start a new game\nInput 'How to' for game instructions\nInput 'Scores' to see scores\n")
-        main_menu_input = input("Enter input: \n")
+        print(f'''Main Menu\n
+Input: 'New' to start a new game
+Input 'How to' for game instructions
+Input 'Scores' to see scores\n''')
+        main_menu_input = input("Enter input: ")
         main_menu_input = main_menu_input.lower()
         if validate_main_menu_input(main_menu_input):
             break
@@ -69,7 +71,8 @@ def validate_main_menu_input(input):
     elif input == 'scores':
         return True
     else:
-        print(f"Ivalid input, you entered {input}")
+        clear_output(0)
+        print(f"Ivalid input, you entered {input}\n")
         return False
 
 def new_game():
