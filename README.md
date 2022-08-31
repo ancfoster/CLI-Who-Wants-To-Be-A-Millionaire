@@ -7,7 +7,6 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 ## Design Process
 
 
-
 ### Game Design
 - Here is the flowchart that I used to plan out the logic of the game to help me when writing the game code. 
 
@@ -18,8 +17,14 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 - The objective of the game is to try and 'win' £1,000,000.
 - For each question there are four options to choose from, labelled ‘A’, ‘B’, ‘C’ and ‘D’. 
 - Two monetary milestones are provided. In this version of the game they are £50,000 (reached after successfully answering question 10) and £1,000 (reeached after successfully answering question 5)
-- A player can 'walk away' from any question, with the last successfully answered question being the 'prize' they walk away with. 
+- A player can 'walk away' from any question, with the last successfully answered question being the 'prize' they walk away with.
 
+
+### User Storiess
+
+- I would like to play a trivia game with questions of increasing difficulty.
+
+- I would like to keep track of game scores by different players.
 
 ## Features
 ### Existing Features
@@ -60,6 +65,9 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 
 ### Features Left to Implement
 
+- Currently the game does not feature the game lifelines: 50:50, phone a friend or ask the audience. This is something I would like to add in the future.
+
+- To make the game more engaging I would make use of the library Colorama to add coloured text into the game.
 
 ## Technologies Used
 
@@ -84,34 +92,49 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 
 ## Deployment
 
-- The game is deployed on Heroku. As it is a CLI based project, to make it runnable in the browser Code Institute provided a NODE.js based program which creates a terminal interface in the browser.
-- The deployed version of the game can be found [here](https://cli-wants-to-be-a-millionaire.herokuapp.com/)
+Code Institute has provided a [template](https://github.com/Code-Institute-Org/python-essentials-template) to display the terminal view of this backend application in a modern web browser. This is to improve the accessibility of the project to others.
 
-### Deployment steps
-- The project uses a number of dependencies like GSpread to run. In VSCode I entered the following command into the terminal `pip3 freeze > requirements.txt` This command creates a list of requirements that Heroku will for when building the project. requirements.txt was committed to GitHub
-- A new project was created on Heroku. The project was created with a unique name and I selected Europe as the region.
-- After the project was created I went to the 'Settings' tab in Heroku and scrolled to Config vars.
-	- This project makes use of API keys and credentials I do not wish to be committed to GitHUb. These are stored in the file creds.json which is in the project .gitignore file.
-	- The contents of this file was pasted into the 'value' field on Heroku.
-	- The name field was given the valye 'CREDS'
-- Under settings I then added the buildpacks 'Python' and 'nodejs'
-	- For this project to run it is important the buildpack 'Python' is added in Heroku first.
-- Then I went to the deploy tab and selected GitHub as the deployment method, connecting my GitHub account.	
-	- I selected the CLI-Who-Wants-To-Be-A-Millionaire project from the dropdown in the modal and seelcted main-branch.
-	- In Heroku I then chose to use automatic deploys. This means that each time I commit changes to the main branch in the GitHub repo Heroku will rebuild the game on their service. 
-
+The live deployed application can be found at [cli-wants-to-be-a-millionaire](https://cli-wants-to-be-a-millionaire.herokuapp.com/).
 
 ### Local Deployment
 
-In order to make a local copy of this project, you can clone it. In your IDE Terminal, type the following command to clone my repository:
+*Gitpod* IDE was used to write the code for this project.
 
-`git clone https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire`
+To make a local copy of this repository, you can clone the project by typing the follow into your IDE terminal:
+- `git clone https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire.git`
 
 Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
 
-[![Open in GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire)
 
-- The GitHub repository does not contain the CREDS.json file which is needed for the game to connect to the Google sheets.
+### Heroku Deployment
+
+This project uses [Heroku](https://www.heroku.com), a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+Deployment steps are as follows, after account setup:
+
+- Select *New* in the top-right corner of your Heroku Dashboard, and select *Create new app* from the dropdown menu.
+- Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select *Create App*.
+- From the new app *Settings*, click *Reveal Config Vars*, and set the value of KEY to `PORT`, and the value to `8000` then select *add*.
+- Further down, to support dependencies, select *Add Buildpack*.
+- The order of the buildpacks is important, select `Python` first, then `Node.js` second. (if they are not in this order, you can drag them to rearrange them)
+
+Heroku needs two additional files in order to deploy properly.
+- requirements.txt
+- Procfile
+
+You can install this project's requirements (where applicable) using: `pip3 install -r requirements.txt`. If you have your own packages that have been installed, then the requirements file needs updated using: `pip3 freeze --local > requirements.txt`
+
+The Procfile can be created with the following command: `echo web: node index.js > Procfile`
+
+For Heroku deployment, follow these steps to connect your GitHub repository to the newly created app:
+
+- In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
+- Set the remote for Heroku: `heroku git:remote -a <app_name>` (replace app_name with your app, without the angle-brackets)
+- After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type: `git push heroku main`
+
+The frontend terminal should now be connected and deployed to Heroku.
+
 
 ## Credits
 
@@ -123,4 +146,4 @@ Alternatively, if using Gitpod, you can click below to create your own workspace
 
 
 ### Acknowledgements
-I would like to thank:
+ would like to thank my Code Institute mentor Tim Nelson for providing invaluable guidance during the development of this project. I also wish to thank my wife Alice for helping me by testing the game.
