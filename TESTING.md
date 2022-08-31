@@ -12,8 +12,9 @@ During devleopment I sought user feedback from my mentor and another user. Based
 		|---|---|
 		|![Before main menu](md_assets/menu_before.jpeg)|![After main menu](md_assets/menu_after.jpeg)|
 
-- Certain messages in the game, like the game won/complete message disappeared after a number of seconds. During testing this was found to result in a negative user experience, so now the messages remain on the screen until a key is pressed on the keyboard.
+- Messages in the game such as game won/complete/walk away messages disappeared after a number of seconds. During testing this was found to result in a negative user experience, so now the messages remain on the screen until a key is pressed on the keyboard.
 
+	![Walk away message](md_assets/walk.jpeg)
 
 - The 'How to Play' instruction section used to output all of its text in one go. During testing both of the users did not like this approach. Instead paragraphs of text are outputted individually and to continue reading the user presses the enter key.
 
