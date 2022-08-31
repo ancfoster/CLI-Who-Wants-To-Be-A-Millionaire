@@ -170,60 +170,22 @@ def ask_question():
     The function also allows users to 'walk away' if they do not know the answer.
     """
     output_question()
-
     #Validates input
     while True:
+        global user_answer
         user_answer = input("Which is the correct answer A, B, C or D?: \n")
         user_answer = user_answer.lower()
         if validate_answer(user_answer):
             break
-
-    if user_answer == correct_answer:
-        print(f"\nCorrect Answer")
-        #The milestone checks whether the correct answer means the user gets to 'bank' a milestone amount
-        milestone()
-        clear_output(1)
-        level_check()
-    #
-    elif user_answer == 'walk':
-        clear_output(0)
-        print(f'''Thank you for playing {player_name},
-you have walked away with {walk_away_with}.''')
-        clear_output(3)
-        print('Saving your score, one moment please . . .')
-        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
-        add_to_scores(walk_away_with_arg)
-        print('Score successfully saved.')
-        clear_output(1.5)
-        main_menu()
-    else:
-        if question_number < 6:
-            leave_with_incorrect_answer_amount = '£0'
-        else:
-            leave_with_incorrect_answer_amount = display_question_amount(milestone_amount)
-
-        print(f'''\nIncorrect. You answered {user_answer.capitalize()},
-the correct answer was {correct_answer.capitalize()}.
-
-You leave with {leave_with_incorrect_answer_amount}
-        
-        ''')
-        clear_output(4)
-        print('Saving your score, one moment please . . .')
-        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
-        if question_number < 6:
-            add_to_scores(0)
-        else:
-            add_to_scores(milestone_amount)
-        print('Score successfully saved.')
-        clear_output(1)
-        main_menu()
+    check_answer()
 
 
 def output_question():
     # This calculates the arguement for display_question_amount. It is the current question -1
+    global walk_away_with_arg
     walk_away_with_arg = question_number - 1
     # Walk away with is the mounr of money the player can walk away with and is based on the last correctly answered question.
+    global walk_away_with
     walk_away_with = display_question_amount(walk_away_with_arg)
     question_money = display_question_amount(question_number)
     answers = assign_answers(question_row)
@@ -235,8 +197,7 @@ def output_question():
 \nB: {answers[1]}
 \nC: {answers[2]}
 \nD: {answers[3]}\n''')
-
-#Players cannot 'walk away' with less than £1k which is why question number must be > 5
+    #Players cannot 'walk away' with less than £1k which is why question number must be > 5
     if question_number > 5:
         print(f'''If you are unsure you may walk away with {walk_away_with} 
 by entering 'walk' instead of an answer.\n''')
@@ -264,6 +225,58 @@ def validate_answer(user_answer):
             print(f'Invalid input, you entered {user_answer}\n')
             output_question()
             return False
+
+
+def check_answer():
+    """
+    This function checks the users answer and then determines
+    what should happen next in the game. If the answer is correct
+    the user can progress and what the user will be able to 'bank'
+    if they have reached the next game mileston.
+    If the user walked away the game will then output how much money
+    the user has won.
+    If the user answered the question incorectly the game will
+    calculate if they won any money or how much.
+    This function also calls the add_to_scores function and passes
+    in a number between 0-15 as the arguement, this number corresponds
+    to a prize amount.
+    """
+    if user_answer == correct_answer:
+        print(f"\nCorrect Answer")
+        #The milestone checks whether the correct answer means the user gets to 'bank' a milestone amount
+        milestone()
+        clear_output(1)
+        level_check()
+    #
+    elif user_answer == 'walk':
+        clear_output(0)
+        print(f'''Thank you for playing {player_name},
+you have walked away with {walk_away_with}.''')
+        clear_output(3)
+        print('Saving your score, one moment please . . .')
+        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
+        add_to_scores(walk_away_with_arg)
+        print('Score successfully saved.')
+        clear_output(1.5)
+        main_menu()
+    else:
+        if question_number < 6:
+            leave_with_incorrect_answer_amount = '£0'
+        else:
+            leave_with_incorrect_answer_amount = display_question_amount(milestone_amount)
+        print(f'''\nIncorrect. You answered {user_answer.capitalize()},
+the correct answer was {correct_answer.capitalize()}.\n
+You leave with {leave_with_incorrect_answer_amount}''')
+        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
+        if question_number < 6:
+            add_to_scores(0)
+        else:
+            add_to_scores(milestone_amount)
+        print(f'\nSaving your score . . .')
+        print(f'\nScore saved.')
+        input('Press enter to return to the main menu')
+        clear_output(0)
+        main_menu()
 
 def assign_answers(row_input):
     """
