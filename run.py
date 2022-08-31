@@ -17,25 +17,31 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('who_wants_game')
 
-#Global variables
+# Global variables
 question_number = 1
 question_numbers_array = []
 player_name = ''
 sheet = ''
 question_row = []
 
+
 def clear_output(seconds):
     """
-    This function clears the terminal contents after a certain number of seconds.
-    The arguement (seconds) determines how long until the terminal should be cleared.
+    This function clears the terminal contents after a certain number of
+    seconds the arguement (seconds) determines how long until the terminal
+    should be cleared.
     """
     current_time = time.time()
     while True:
         # Using time.sleep() greatly reduces CPU performance
-        time.sleep(0.25) # sleep for 250 milliseconds - Code snipptet from StackOverflow user Antony https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time
+        # sleep for 250 milliseconds - snippet from StackOverflow user Antony
+        # https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time #noqa
+        time.sleep(0.25)
         if time.time() >= current_time + seconds:
-            print("\033c") # Code snippet from StackOverflow user Alex Hawking https://stackoverflow.com/users/9868018/alex-hawking
+            print("\033c")  # Code snippet from StackOverflow user Alex Hawking
+            # https://stackoverflow.com/users/9868018/alex-hawking
             break
+
 
 def main_menu():
     """
@@ -60,6 +66,7 @@ Input 'Scores' to see scores\n''')
     elif main_menu_input == 'scores':
         scores()
 
+
 def validate_main_menu_input(input):
     """
     This function validates the users input from the main menu
@@ -78,7 +85,7 @@ def validate_main_menu_input(input):
 
 def new_game():
     """
-    This function prepares the program for a new game. 
+    This function prepares the program for a new game.
     Resets variables if player has already played during run time.
     """
     clear_output(0)
@@ -96,9 +103,10 @@ def new_game():
 def load_level():
     """
     This function loads the 'level' variables.
-    There are three sheets in the worksheet file, one for easy questions, medium and hard.
-    The difficulty of question picked depends on the players progress.
-    """  
+    There are three sheets in the worksheet file, one for easy questions,
+    medium and hard. The difficulty of question picked depends on the
+    players progress.
+    """
     # Loads the required sheet and counts the number of questions in the sheet.
     global loaded_sheet
     loaded_sheet = SHEET.worksheet(sheet)
@@ -107,7 +115,7 @@ def load_level():
     global question_numbers_array
     question_numbers_array = []
     question_array_counter = 1
-    # Creates an array of numbers based on the number of questions in the sheet.
+    # Creates an array of numbers based on the number of questions in the sheet
     while question_array_counter < number_of_questions_in_sheet:
         question_numbers_array.append(question_array_counter)
         question_array_counter += 1
@@ -116,12 +124,13 @@ def load_level():
 
 def load_question():
     """
-    This function randomly generates a number with the length of the question numbers array.
-    This number corresponds to a row in a question sheet. 
-    A row contains a written question and four answers. The last answer is always the correct one.
+    This function randomly generates a number with the length of the question
+    numbers array. This number corresponds to a row in a question sheet.
+    A row contains a written question and four answers. The last answer is
+    always the correct one.
     """
     print("Loading question . . .")
-    #question ID represents the list index of each question number
+    # question ID represents the list index of each question number
     global question_numbers_array
     question_id = random.randrange(1, len(question_numbers_array))
     global question_row
@@ -129,7 +138,7 @@ def load_question():
     question_numbers_array.pop(question_id)
     clear_output(0.4)
     ask_question()
-    
+
 
 def display_question_amount(q_number):
     """
@@ -173,12 +182,13 @@ def display_question_amount(q_number):
 
 def ask_question():
     """
-    This function outputs the question to the terminal and how much money the question is worth.
-    It also asks the user to input their answer and then checks it.
-    The function also allows users to 'walk away' if they do not know the answer.
+    This function outputs the question to the terminal and how much money the
+    question is worth. It also asks the user to input their answer and then
+    checks it. The function also allows users to 'walk away' if they do not
+    know the answer.
     """
     output_question()
-    #Validates input
+    # Validates input
     while True:
         global user_answer
         user_answer = input("Which is the correct answer A, B, C or D?: \n")
@@ -189,10 +199,18 @@ def ask_question():
 
 
 def output_question():
-    # This calculates the arguement for display_question_amount. It is the current question -1
+    """
+    This function is responsible for printing the question to the terminal.
+    It calculates how much money the player can walk away with and populates
+    the possible answers between the letters A B C D. It also globally sets
+    the correct answer variable which is used by other functions.
+    """
+    # This calculates the arguement for display_question_amount.
+    # It is the current question number -1
     global walk_away_with_arg
     walk_away_with_arg = question_number - 1
-    # Walk away with is the mounr of money the player can walk away with and is based on the last correctly answered question.
+    # Walk away with is the mounr of money the player can walk away with and is
+    # based on the last correctly answered question.
     global walk_away_with
     walk_away_with = display_question_amount(walk_away_with_arg)
     question_money = display_question_amount(question_number)
@@ -205,17 +223,17 @@ def output_question():
 \nB: {answers[1]}
 \nC: {answers[2]}
 \nD: {answers[3]}\n''')
-    #Players cannot 'walk away' with less than £1k which is why question number must be > 5
+    # Player cannot 'walk away' with less than £1k so question number must be > 5
     if question_number > 5:
-        print(f'''If you are unsure you may walk away with {walk_away_with} 
+        print(f'''If you are unsure you may walk away with {walk_away_with}
 by entering 'walk' instead of an answer.\n''')
- 
+
 
 def validate_answer(user_answer):
     """
     This function checks the player's inputted answer. If the input is valid
-    True will be returned, if not False will be returned along with the incorrect
-    user input.
+    True will be returned, if not False will be returned along with the
+    incorrect user input.
     """
     match user_answer:
         case 'a':
@@ -251,7 +269,8 @@ def check_answer():
     """
     if user_answer == correct_answer:
         print(f"\nCorrect Answer")
-        #The milestone checks whether the correct answer means the user gets to 'bank' a milestone amount
+        # The milestone checks whether the correct answer means the user gets
+        # to 'bank' a milestone amount
         milestone()
         clear_output(1)
         level_check()
@@ -261,7 +280,8 @@ def check_answer():
 you have walked away with {walk_away_with}.''')
         clear_output(3)
         print('Saving your score, one moment please . . .')
-        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
+        # Calls function that saves player score. The arguement is the question
+        # number of the last correctly answered question
         add_to_scores(walk_away_with_arg)
         print('Score successfully saved.')
         clear_output(1.5)
@@ -270,11 +290,12 @@ you have walked away with {walk_away_with}.''')
         if question_number < 6:
             leave_with_incorrect_answer_amount = '£0'
         else:
-            leave_with_incorrect_answer_amount = display_question_amount(milestone_amount)
+            leave_with_incorrect_answer_amount = display_question_amount(milestone_amount)  # noqa
         print(f'''\nIncorrect. You answered {user_answer.capitalize()},
 the correct answer was {correct_answer.capitalize()}.\n
 You leave with {leave_with_incorrect_answer_amount}''')
-        #Calls function that saves player score. The arguement is the question number of the last correctly answered question
+        # Calls function that saves player score.
+        # Arguement is question number of the last correctly answered question
         if question_number < 6:
             add_to_scores(0)
         else:
@@ -288,9 +309,9 @@ You leave with {leave_with_incorrect_answer_amount}''')
 
 def assign_answers(row_input):
     """
-    To make the game more interesting if it is played multiple times the position
-    of the different changes. This function determines the letetr of the correct answer
-    and then the letters of the incorrect answers.
+    To make the game more interesting if it is played multiple times the
+    position of the different changes. This function determines the letter
+    of the correct answer and then the letters of the incorrect answers.
     """
     correct_answer_position = random.randrange(1, 5)
     if correct_answer_position == 1:
@@ -306,10 +327,10 @@ def assign_answers(row_input):
 
 def level_check():
     """
-    This function is called when the user answers a question correctly. 
+    This function is called when the user answers a question correctly.
     This function determines whether to load a sheet with harder questions.
-    If not necessary the next question is simply loaded by calling load_question()
-    This function also increments the question number. 
+    If not necessary the next question is simply loaded by calling
+    load_question() This function also increments the question number.
     """
     global question_number
     question_number += 1
@@ -328,8 +349,8 @@ def level_check():
 
 def game_complete():
     """
-    This function is called by the function level_check when 
-    the variable question_number is equal to 16. This means the 
+    This function is called by the function level_check when
+    the variable question_number is equal to 16. This means the
     player has commpleted the game and won £1,000,000
     """
     print(f'''********************************\n
@@ -350,7 +371,7 @@ def how_to():
     print(f"How to play CLI Who Wants to Be A Millionaire\n")
     print(f"_____________________________________________\n")
     print(f'''This game is a CLI interpretation of the UK quiz
-game show of the same name. 
+game show of the same name.
 
 The objective is to win £1,000,000 by answer 15 multiple choice questions
 correctly. These questions are from a variety of general knowledge topics.
@@ -362,8 +383,8 @@ The questions are valued at progressively higher sums of money.\n''')
 The questions answers are labelled A, B, C and D. To answer a question
 simply input the corresponding letter into the terminal and press the
 enter key. During the game there are two monetary milestones, £1,000
-and £50,000. If you answer a question incorrectly, but passed a 
-milestone during the game that milestone will be your score. 
+and £50,000. If you answer a question incorrectly, but passed a
+milestone during the game that milestone will be your score.
 
 Game developed by Alexander Foster.
 ''')
@@ -398,7 +419,7 @@ def validate_how_to_play(input):
 def set_user():
     """
     This function asks for and sets the player's name.
-    The name is validated to be between 3 and 15 characters 
+    The name is validated to be between 3 and 15 characters
     in length.
     """
     clear_output(0)
@@ -436,15 +457,15 @@ def add_to_scores(score_to_save):
     This function writes the player name, game date & score (cash amount)
     to the sheet named 'scores' in the Google worksheet.
     """
-    #Init empty list
+    # Init empty list
     score_data = []
-    #Returns a string containing the cash score amount
+    # Returns a string containing the cash score amount
     score_save = display_question_amount(score_to_save)
-    #Current date
+    # Current date
     current_date = datetime.now()
-    #Convert date into required format dd-mm-yyyy
+    # Convert date into required format dd-mm-yyyy
     save_date = current_date.strftime("%d-%m-%Y")
-    #Append the three values to list score_data
+    # Append the three values to list score_data
     score_data.append(player_name)
     score_data.append(save_date)
     score_data.append(score_save)
@@ -480,11 +501,11 @@ Loading most recent scores . . .
     scores_col = SHEET.worksheet('scores').col_values(1)
 
     number_of_scores = len(scores_col)
-    # If there are less than 10 records only get the records that are available 
+    # If there are less than 10 records only get the records that are available
     if number_of_scores < 10:
         score_records_to_get = number_of_scores
     else:
-    # Default action is to get and print out the 10 most recent scores
+        # Default action is to get and print out the 10 most recent scores
         score_records_to_get = 10
     score_records_all = []
     record_count = score_records_to_get
@@ -494,14 +515,15 @@ Loading most recent scores . . .
         score_record = SHEET.worksheet('scores').row_values(number_of_scores)
         score_records_all.append(score_record)
         record_count -= 1
-        number_of_scores -= 1    
+        number_of_scores -= 1
     clear_output(0)
     print('''Scores
 ________________________
 
 ''')
     for record in score_records_all:
-        print(f'''Player {record[0]} played and won {record[2]} on {record[1]}\n''')
+        print(f'''Player {record[0]} played and won {record[2]} on {record[1]}
+        ''')
     # This section of the function returns the user to the main menu
     while True:
         score_nav_input = input("To return to the main menu input 'menu': \n")
@@ -510,7 +532,7 @@ ________________________
             break
     clear_output(0)
     main_menu()
-        
+
 
 def validate_score_menu(input):
     """
