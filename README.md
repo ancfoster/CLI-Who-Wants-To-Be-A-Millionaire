@@ -10,7 +10,7 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 ### Game Design
 - Here is the flowchart that I used to plan out the logic of the game to help me when writing the game code. 
 
- flow chart will go here
+	![Flowchart](md_assets/flowchart.png)
 
 - The game consists of 15 general knowledge trivia questions. These questions get harder as the player progresses through the game.
 - The questions are valued at progressively higher sums of money, up to the top prize of £1,000,000
@@ -35,7 +35,7 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 - Input validation
 	- If a user enters an invalid input like the letter 'n' instead of the letter 'b' the game will recognise this and ask the user to enter a correct input and inform them of the incorrect input they entered. 
 
-	- This is defensive design and is a good UX practice. Every single input within the game will catch invalid inputs and allow the user to reinput.
+	- This is defensive design and is a good UX practice. Every single input within the game will catch invalid inputs and allow the user to try again.
 
 		![Validation](md_assets/validation.png)
 - Score system
@@ -57,9 +57,10 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 	![Google sheet](md_assets/spreadsheet.jpg)
 
 - Randomisation
-	- To make the game more interesting when played multiple times it features two types of ranomisation:
+	- To make the game more interesting when played multiple times it features two types of randomisation:
 	- The questions are randomly taken from each question sheet
 	- The question answers are randomly assigned to the A,B,C,D letters
+	- The end result is that every game will be unique.
 
 	![Randomisation](md_assets/random.jpg)
 
@@ -71,8 +72,8 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 
 ## Technologies Used
 
-- Python - the game was coded in the Python programming language ans uses Python version 3
-- Google Sheets - an online spreadsheet service my Google. This is used to store the game questions and player scores.
+- Python - the game was coded in the Python programming language and uses Python version 3
+- Google Sheets - an online spreadsheet service provided by Google. This is used to store the game questions and player scores.
 - Google Cloud
 	- The Google Sheets API and Google Drive API are used in Google cloud to connect the project to my Google Drive/Sheets files
 - Heroku a cloud platform-as-a-service is used to host the game in a web browser
@@ -84,6 +85,8 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 - [GitHub](https://github.com]) was used for hosting the online repository, it provides an online version of Git, a source code management tool.
 
 - [Markdown Editor](https://apps.apple.com/ie/app/markdown-editor/id1458220908?mt=12) by Satoshi Iwaki was used for editing .MD files.
+
+- [Lucid](https://www.lucid.app) was used to create the flowchart.
 
 
 ## Testing
@@ -116,6 +119,7 @@ Deployment steps are as follows, after account setup:
 - Select *New* in the top-right corner of your Heroku Dashboard, and select *Create new app* from the dropdown menu.
 - Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select *Create App*.
 - From the new app *Settings*, click *Reveal Config Vars*, and set the value of KEY to `PORT`, and the value to `8000` then select *add*.
+- The contents of `creds.json` must be added as well, set the value of KEY to `CREDS`, paste in the contentsof creds.json into the value field and then select *add*.
 - Further down, to support dependencies, select *Add Buildpack*.
 - The order of the buildpacks is important, select `Python` first, then `Node.js` second. (if they are not in this order, you can drag them to rearrange them)
 
@@ -125,8 +129,6 @@ Heroku needs two additional files in order to deploy properly.
 
 You can install this project's requirements (where applicable) using: `pip3 install -r requirements.txt`. If you have your own packages that have been installed, then the requirements file needs updated using: `pip3 freeze --local > requirements.txt`
 
-The Procfile can be created with the following command: `echo web: node index.js > Procfile`
-
 For Heroku deployment, follow these steps to connect your GitHub repository to the newly created app:
 
 - In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
@@ -135,14 +137,12 @@ For Heroku deployment, follow these steps to connect your GitHub repository to t
 
 The frontend terminal should now be connected and deployed to Heroku.
 
-
 ## Credits
 
 - Code snippet from StackOverflow user [Alex Hawking](https://stackoverflow.com/users/9868018/alex-hawking) that is used to clear the terminal
 
 - Code snippet from StackOverflow user [Antony](https://stackoverflow.com/users/1030576/anthony) that makes use of 'time.sleep()' to [improve CPU performance](https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time) when using 'time.time()' in a loop.
 - How to use a wildcard in Python match-case from StackOverflow user [Tomerikoo](https://stackoverflow.com/users/6045800/tomerikoo)
-
 
 
 ### Acknowledgements
