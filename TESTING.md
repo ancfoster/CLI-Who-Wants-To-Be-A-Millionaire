@@ -26,8 +26,7 @@ During devleopment I sought user feedback from my mentor and another user. Based
 
 **PEP8 validator**
 
-The code passes through the validator except for two lines which are too long because of long variable names.
-These lines are commented as `# noqa`
+The code passes through the PEP8 validator.
 
 | File | Screenshot |
 |---|---|
