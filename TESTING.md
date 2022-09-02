@@ -32,6 +32,34 @@ The code passes through the PEP8 validator.
 |---|---|
 |run.py|![Test screenshot](md_assets/pep8.jpeg)|
 
+## Defensive programming testing
+
+- Main menu
+	- Invalid input
+		![Invalid input](md_assets/invalid_mmain_menu.jpeg)
+
+- Player name screen
+	- Less than 3 characters
+
+		![Less than 3 characters](md_assets/player_less3.jpeg)
+
+	- Non-alpha characters
+
+		![Non-alpha characters](md_assets/player_non-alpha.jpeg)
+
+	- More than 15 characters in length
+		
+		![More than 15 characters](md_assets/player_more15.jpeg)
+
+
+- Question screen
+	- Users can enter the options A, B, C, D or walk in caps or lowercase the game will permit this to improve the experience.
+	- When a non-valid input is entered an erroe message will be displayed.
+
+		![Invalid input 1](md_assets/answer1.jpeg)
+
+		![Invalid input 2](md_assets/answer2.jpeg)
+
 ## User Story Testing
 
 - I would like to play a trivia game with questions of increasing difficulty.
