@@ -35,7 +35,7 @@ def clear_output(seconds):
     while True:
         # Using time.sleep() greatly reduces CPU performance
         # sleep for 250 milliseconds - snippet from StackOverflow user Antony
-        # https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time #noqa
+        # https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time
         time.sleep(0.25)
         if time.time() >= current_time + seconds:
             print("\033c")  # Code snippet from StackOverflow user Alex Hawking
@@ -79,7 +79,8 @@ def validate_main_menu_input(input):
         return True
     else:
         clear_output(0)
-        print(f"Ivalid input, you entered {input}\n")
+        print(f'''Ivalid input, you entered {input}
+Please try again.\n''')
         return False
 
 
@@ -223,7 +224,7 @@ def output_question():
 \nB: {answers[1]}
 \nC: {answers[2]}
 \nD: {answers[3]}\n''')
-    # Player cannot 'walk away' with less than £1k so question number must be > 5
+    # Player cannot 'walk away' with less than £1k, question number must be > 5
     if question_number > 5:
         print(f'''If you are unsure you may walk away with {walk_away_with}
 by entering 'walk' instead of an answer.\n''')
@@ -525,24 +526,10 @@ ________________________
         print(f'''Player {record[0]} played and won {record[2]} on {record[1]}
         ''')
     # This section of the function returns the user to the main menu
-    while True:
-        score_nav_input = input("To return to the main menu input 'menu': \n")
-        score_nav_input = score_nav_input.lower()
-        if validate_score_menu(score_nav_input):
-            break
+    input('Press enter to return to the main menu')
     clear_output(0)
     main_menu()
 
-
-def validate_score_menu(input):
-    """
-    This function validates the user input when the scores have been outputted
-    """
-    if input == 'menu':
-        return True
-    else:
-        print(f"Invlid input, you entered {input}")
-        return False
 
 # This calls the main_menu function and starts the game when run.py is run.
 main_menu()
