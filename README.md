@@ -72,12 +72,12 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 
 ## Technologies Used
 
-- Python - the game was coded in the Python programming language and uses Python version 3
-- Google Sheets - an online spreadsheet service provided by Google. This is used to store the game questions and player scores.
+- [Python](https://www.python.org/) - the game was coded in the Python programming language and uses Python version 3
+- [Google Sheets](https://www.google.co.uk/sheets/about/) - an online spreadsheet service provided by Google. This is used to store the game questions and player scores.
 - Google Cloud
-	- The Google Sheets API and Google Drive API are used in Google cloud to connect the project to my Google Drive/Sheets files
-- Heroku a cloud platform-as-a-service is used to host the game in a web browser
-- NODE.js a back-end JavaScript runtime is used to create a terminal in a web browser.  
+	- The [Google Sheets API](https://developers.google.com/sheets/api) and [Google Drive API](https://developers.google.com/drive/api/guides/about-sdk) are used in Google cloud to connect the project to my Google Drive/Sheets files
+- [Heroku](https://www.heroku.com) a cloud platform-as-a-service is used to host the game in a web browser
+- [NODE.js](https://nodejs.org/en/) a back-end JavaScript runtime is used to create a terminal in a web browser.  
 
 ## Tools used
 - For writing code I used [Visual Studio Code](https://code.visualstudio.com/) which I also used for Git commands and pushing to GitHub. I ran the game in my local terminal inside Visual Studio Code.
@@ -141,9 +141,9 @@ The frontend terminal should now be connected and deployed to Heroku.
 
 - Code snippet from StackOverflow user [Alex Hawking](https://stackoverflow.com/users/9868018/alex-hawking) that is used to clear the terminal
 
-- Code snippet from StackOverflow user [Antony](https://stackoverflow.com/users/1030576/anthony) that makes use of 'time.sleep()' to [improve CPU performance](https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time) when using 'time.time()' in a loop.
+- Code snippet from StackOverflow user [Antony](https://stackoverflow.com/users/1030576/anthony) that makes use of `time.sleep()` to [improve CPU performance](https://stackoverflow.com/questions/13293269/how-would-i-stop-a-while-loop-after-n-amount-of-time) when using `time.time()` in a loop.
 - How to use a wildcard in Python match-case from StackOverflow user [Tomerikoo](https://stackoverflow.com/users/6045800/tomerikoo)
 
 
 ### Acknowledgements
- would like to thank my Code Institute mentor Tim Nelson for providing invaluable guidance during the development of this project. I also wish to thank my wife Alice for helping me by testing the game.
+I would like to thank my Code Institute mentor Tim Nelson for providing invaluable guidance during the development of this project. I also wish to thank my wife Alice for helping me by testing the game.
