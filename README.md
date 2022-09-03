@@ -30,7 +30,7 @@ CLI Who Wants To Be A Millionaire is a Python command line trivia game based on 
 ### Existing Features
 - The game features 15 multiple choice questions.
 
-	![Multiple choice questions](md_assets/main.png)
+	![Multiple choice questions](md_assets/questions.jpeg)
 
 - Input validation
 	- If a user enters an invalid input like the letter 'n' instead of the letter 'b' the game will recognise this and ask the user to enter a correct input and inform them of the incorrect input they entered. 
@@ -109,6 +109,35 @@ To make a local copy of this repository, you can clone the project by typing the
 Alternatively, if using Gitpod, you can click below to create your own workspace using this repository.
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire)
+
+
+## Google Cloud Credentials
+For the game to run the file `CREDS.json` needs to be populated with credentials to access the two Google APIs.
+
+Steps to obtain the credentials are as follows:
+
+- Visit [Google Cloud Platform](https://console.cloud.google.com/)
+
+- Create a new project and give the projeect a name
+
+- Click on APIs and services from the left hand menu and select library
+
+- Two APIs need to be enabled, one for Google Drive and Google Sheets.
+
+- Search for Google Drive API in the search bar and click enable.
+
+	- Now generate credentials, clicking the create credential buttons.
+
+		- Select Google Drive API from the drop down and then select the Application Data radio button
+		- Then click the 'What Credentials do I need?' button
+		- Create a service account name and pick 'editor' from the role dropdown.
+		- Select JSON for the key type
+		- Now the credentials will download to your computer as a JSON file.
+		- Rename this filed to `CREDS.json` and place it in the project folder.
+		- Make sure the project .gitignore file contains `CREDS.json`
+
+- Back in the API library search for Google Sheets
+	- Now click enable. There are no credentials to download for this API.
 
 ### Heroku Deployment
 
