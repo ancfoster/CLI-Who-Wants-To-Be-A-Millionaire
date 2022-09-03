@@ -36,7 +36,8 @@ The code passes through the PEP8 validator.
 
 - Main menu
 	- Invalid input
-		![Invalid input](md_assets/invalid_mmain_menu.jpeg)
+
+		![Invalid input](md_assets/invalid_mmain_menu1.jpeg)
 
 - Player name screen
 	- Less than 3 characters
@@ -59,6 +60,20 @@ The code passes through the PEP8 validator.
 		![Invalid input 1](md_assets/answer1.jpeg)
 
 		![Invalid input 2](md_assets/answer2.jpeg)
+
+## Browser Compatibility testing
+
+| Browser | Screenshot |
+| --- | --- |
+|![Chrome](md_assets/chrome.png)|![Running in Chrome](md_assets/chrome.jpeg)|
+
+| Browser | Screenshot |
+| --- | --- |
+|![Safari](md_assets/safari.png)|![Running in Safari](md_assets/safari.jpeg)|
+
+| Browser | Screenshot |
+| --- | --- |
+|![Firefox](md_assets/firefox.png)|![Running in Firefox](md_assets/firefox.jpeg)|
 
 ## User Story Testing
 
