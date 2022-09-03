@@ -111,7 +111,7 @@ Alternatively, if using Gitpod, you can click below to create your own workspace
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/ancfoster/CLI-Who-Wants-To-Be-A-Millionaire)
 
 
-## Google Cloud Credentials
+### Google Cloud Credentials
 For the game to run the file `CREDS.json` needs to be populated with credentials to access the two Google APIs.
 
 Steps to obtain the credentials are as follows:
@@ -174,5 +174,5 @@ The frontend terminal should now be connected and deployed to Heroku.
 - How to use a wildcard in Python match-case from StackOverflow user [Tomerikoo](https://stackoverflow.com/users/6045800/tomerikoo)
 
 
-### Acknowledgements
+## Acknowledgements
 I would like to thank my Code Institute mentor Tim Nelson for providing invaluable guidance during the development of this project. I also wish to thank my wife Alice for helping me by testing the game.
