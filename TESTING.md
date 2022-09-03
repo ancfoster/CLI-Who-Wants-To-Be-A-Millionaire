@@ -32,7 +32,7 @@ The code passes through the PEP8 validator.
 |---|---|
 |run.py|![Test screenshot](md_assets/pep8.jpeg)|
 
-## Defensive programming testing
+## Defensive programming Testing
 
 - Main menu
 	- Invalid input
@@ -63,7 +63,7 @@ The code passes through the PEP8 validator.
 
 ## Browser Compatibility testing
 
-| Browser | Screenshot |
+| Screen size | Screenshot |
 | --- | --- |
 |![Chrome](md_assets/chrome.png)|![Running in Chrome](md_assets/chrome.jpeg)|
 
@@ -74,6 +74,21 @@ The code passes through the PEP8 validator.
 | Browser | Screenshot |
 | --- | --- |
 |![Firefox](md_assets/firefox.png)|![Running in Firefox](md_assets/firefox.jpeg)|
+
+
+## Responsive Testing
+
+| Browser | Screenshot |
+| --- | --- |
+|iPhone SE 2 (375 x 667)|![Running in Chrome](md_assets/iphonese.jpeg)|
+
+| Browser | Screenshot |
+| --- | --- |
+|Nexus 7 Tablet (600 x 960)|![Running in Safari](md_assets/nexus.jpeg)|
+
+| Browser | Screenshot |
+| --- | --- |
+|Laptop MDPI (1200 x 800)|![Running in Firefox](md_assets/laptop.jpeg)|
 
 ## User Story Testing
 
