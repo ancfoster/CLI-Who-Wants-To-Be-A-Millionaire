@@ -475,6 +475,10 @@ def add_to_scores(score_to_save):
 
 
 def milestone():
+    """
+    This function calculates if a game milestone
+    has been reached and returns it when called.
+    """
     global milestone_amount
     match question_number:
         case 5:
